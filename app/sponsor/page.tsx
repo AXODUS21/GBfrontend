@@ -1,10 +1,16 @@
+'use client'
+
+import { useState, Suspense } from "react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Heart, Globe2, Users } from "lucide-react"
+import { DonationDialog } from "@/components/donation-dialog"
 
-export default function SponsorPage() {
+function SponsorContent() {
+  const [dialogOpen, setDialogOpen] = useState(false)
+
   return (
     <main>
       <Navigation />
@@ -119,7 +125,10 @@ export default function SponsorPage() {
               </p>
             </div>
 
-            <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-lg mb-4">
+            <Button 
+              onClick={() => setDialogOpen(true)}
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-lg mb-4"
+            >
               Become a Sponsor Today
             </Button>
             <Button
@@ -146,7 +155,16 @@ export default function SponsorPage() {
         </div>
       </section>
 
+      <DonationDialog open={dialogOpen} onOpenChange={setDialogOpen} />
       <Footer />
     </main>
+  )
+}
+
+export default function SponsorPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SponsorContent />
+    </Suspense>
   )
 }
