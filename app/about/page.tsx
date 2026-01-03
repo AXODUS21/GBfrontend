@@ -20,28 +20,31 @@ export default function AboutPage() {
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission & Vision</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">Our Mission & Vision</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-foreground">Mission</CardTitle>
+                  <CardTitle className="text-foreground text-2xl mb-2">Mission Statement</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground/70">
-                    Global Bright Futures Foundation exists to eliminate barriers to quality education and create
-                    transformative learning opportunities for students regardless of location or economic circumstances.
+                  <p className="text-foreground/80 text-lg leading-relaxed">
+                    Global Bright Futures Foundation empowers underserved learners by expanding access to scholarships, tutoring, mentorship, and innovative educational programs that foster academic growth, opportunity, and lifelong success—locally and globally.
                   </p>
                 </CardContent>
               </Card>
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-foreground">Vision</CardTitle>
+                  <CardTitle className="text-foreground text-2xl mb-2">Vision Statement</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground/70">
-                    A world where every student has access to quality education, mentorship, and global learning
-                    partnerships that prepare them for success and meaningful contribution to society.
-                  </p>
+                  <div className="space-y-4">
+                    <p className="text-foreground/80 text-lg leading-relaxed">
+                      We envision a world where every learner regardless of income, location, or circumstance has access to meaningful, high-quality education pathways that unlock potential, strengthen communities, and create lasting opportunity across generations and borders.
+                    </p>
+                    <p className="text-foreground/70 text-base leading-relaxed border-t border-border pt-4 italic">
+                      Through ethical partnerships, innovation, and transparency, education becomes a shared global opportunity not a privilege.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
