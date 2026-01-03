@@ -1,22 +1,22 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Globe2, Users } from "lucide-react"
+import { BookOpen, Globe2, GraduationCap } from "lucide-react"
 
 const impacts = [
   {
     icon: BookOpen,
     title: "Education Access",
-    description: "Tutoring, scholarships, and learning support for students selected by participating schools.",
+    description: "High-quality tutoring, mentorship, education access awards, and learning resources for students independently selected by participating schools.",
   },
   {
     icon: Globe2,
     title: "Global School Pairing",
     description:
-      "Each voucher issued to a U.S. school is automatically paired with a partner school abroad, which independently selects its students.",
+      "Each U.S. school voucher is paired with a partner school abroad. Schools independently identify and support students based on educational needs.",
   },
   {
-    icon: Users,
-    title: "Training Future Tutors",
-    description: "Underprivileged college students gain skills and income through tutoring programs.",
+    icon: GraduationCap,
+    title: "College Fellowship",
+    description: "Under-resourced college students gain teaching experience, mentorship skills, and financial support while completing their degrees.",
   },
 ]
 
