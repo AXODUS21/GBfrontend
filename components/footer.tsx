@@ -85,13 +85,14 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Contact</h3>
             <ul className="space-y-3 text-primary-foreground/80">
               <li className="flex items-center gap-2">
-                <Mail size={18} /> hello@gbf.org
+                <Mail size={18} /> admin@globalbrightfutures.org
               </li>
               <li className="flex items-center gap-2">
-                <Phone size={18} /> (555) 123-4567
+                <Phone size={18} /> 661 488 9935
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={18} /> San Francisco, CA
+              <li className="flex items-start gap-2">
+                <MapPin size={18} className="mt-1 flex-shrink-0" />
+                <span>5830 E 2ND ST, STE 7000 #30800<br />CASPER, WY 82609</span>
               </li>
             </ul>
           </div>
@@ -102,14 +103,14 @@ export default function Footer() {
             &copy; 2025 Global Bright Futures Foundation. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-primary-foreground/70 transition" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com/gbffinc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary-foreground/70 transition"
+              aria-label="Facebook"
+            >
               <Facebook size={20} />
-            </a>
-            <a href="#" className="hover:text-primary-foreground/70 transition" aria-label="LinkedIn">
-              <Linkedin size={20} />
-            </a>
-            <a href="#" className="hover:text-primary-foreground/70 transition" aria-label="Twitter">
-              <Twitter size={20} />
             </a>
           </div>
         </div>
