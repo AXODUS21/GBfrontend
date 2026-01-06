@@ -1,32 +1,82 @@
-import Link from "next/link"
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from "lucide-react"
+import Link from "next/link";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Linkedin,
+  Twitter,
+  ArrowRight,
+} from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Process Overview */}
+        <div className="mb-12 pb-8 border-b border-primary-foreground/20">
+          <h3 className="font-bold text-lg mb-4">Process Overview</h3>
+          <div className="flex flex-wrap items-center gap-2 text-primary-foreground/80 text-sm">
+            <span>Schools select students</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>Foundation issues vouchers</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>Paired schools abroad receive vouchers</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>Students receive tutoring, mentorship, or materials</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>College fellows supported</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>Independent record-keeping</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span>Foundation administers payments</span>
+            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <span className="font-medium">Audit-safe and scalable</span>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div>
             <h3 className="font-bold text-lg mb-4">Programs</h3>
             <ul className="space-y-2 text-primary-foreground/80">
               <li>
-                <Link href="/programs" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/programs"
+                  className="hover:text-primary-foreground transition"
+                >
                   Scholarships
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/programs"
+                  className="hover:text-primary-foreground transition"
+                >
                   Tutor Matching
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/programs"
+                  className="hover:text-primary-foreground transition"
+                >
                   SEL & Mentorship
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-primary-foreground transition">
-                  STEM Programs
+                <Link
+                  href="/programs"
+                  className="hover:text-primary-foreground transition"
+                >
+                  STEM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/programs"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Homeschool Support
                 </Link>
               </li>
             </ul>
@@ -35,23 +85,35 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Get Involved</h3>
             <ul className="space-y-2 text-primary-foreground/80">
               <li>
-                <Link href="/sponsor" className="hover:text-primary-foreground transition">
-                  Sponsor a Student
+                <Link
+                  href="/sponsor"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Donate
                 </Link>
               </li>
               <li>
-                <Link href="/partnerships" className="hover:text-primary-foreground transition">
-                  Partner School
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/contact"
+                  className="hover:text-primary-foreground transition"
+                >
                   Volunteer
                 </Link>
               </li>
               <li>
-                <Link href="/partnerships" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/partnerships"
+                  className="hover:text-primary-foreground transition"
+                >
                   Become a Vendor
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/partnerships"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Partner School
                 </Link>
               </li>
             </ul>
@@ -60,22 +122,34 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">About</h3>
             <ul className="space-y-2 text-primary-foreground/80">
               <li>
-                <Link href="/about" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/about"
+                  className="hover:text-primary-foreground transition"
+                >
                   Mission & Vision
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-primary-foreground transition">
-                  Team
+                <Link
+                  href="/about"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Board & Team
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/about"
+                  className="hover:text-primary-foreground transition"
+                >
                   Financials
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-primary-foreground transition">
+                <Link
+                  href="/contact"
+                  className="hover:text-primary-foreground transition"
+                >
                   Contact
                 </Link>
               </li>
@@ -91,8 +165,12 @@ export default function Footer() {
                 <Phone size={18} /> 661 488 9935
               </li>
               <li className="flex items-start gap-2">
-                <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>5830 E 2ND ST, STE 7000 #30800<br />CASPER, WY 82609</span>
+                <MapPin size={18} className="mt-1 shrink-0" />
+                <span>
+                  5830 E 2ND ST, STE 7000 #30800
+                  <br />
+                  CASPER, WY 82609
+                </span>
               </li>
             </ul>
           </div>
@@ -116,5 +194,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
