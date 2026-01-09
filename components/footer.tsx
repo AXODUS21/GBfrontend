@@ -18,7 +18,7 @@ export default function Footer() {
           <h3 className="font-bold text-lg mb-4">Process Overview</h3>
           <div className="flex flex-wrap items-center gap-2 text-primary-foreground/80 text-sm">
             <span>Schools select students</span>
-            <ArrowRight size={16} className="text-primary-foreground/60" />
+            <ArrowRight size={16} className="text-primary-foreground/60" /> 
             <span>Foundation issues vouchers</span>
             <ArrowRight size={16} className="text-primary-foreground/60" />
             <span>Paired schools abroad receive vouchers</span>

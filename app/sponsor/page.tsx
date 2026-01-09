@@ -1,13 +1,39 @@
+"use client"
+
+import { useState } from "react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Heart, Globe2, Users, GraduationCap, DollarSign, CheckCircle, ArrowRight } from "lucide-react"
+import ZeffyDonation from "@/components/zeffy-donation"
+import ZeffyEmbed from "@/components/zeffy-embed"
 
 const suggestedAmounts = [5, 10, 25, 50, 75, 100, 200, 500]
 
+// TODO: Replace with your actual Zeffy form URL from your Zeffy dashboard
+// Get this from: Zeffy Dashboard > Donations > My forms > Share > Embed your form
+const ZEFFY_FORM_URL = process.env.NEXT_PUBLIC_ZEFFY_FORM_URL || ""
+
 export default function SponsorPage() {
+  const [showDonationForm, setShowDonationForm] = useState(false)
+
+  const handleDonateClick = (amount: number, isRecurring: boolean) => {
+    if (ZEFFY_FORM_URL) {
+      // Open Zeffy form in new tab with amount pre-filled
+      const url = new URL(ZEFFY_FORM_URL)
+      url.searchParams.set("amount", amount.toString())
+      if (isRecurring) {
+        url.searchParams.set("recurring", "true")
+      }
+      window.open(url.toString(), "_blank")
+    } else {
+      // If no URL configured, show embedded form
+      setShowDonationForm(true)
+    }
+  }
+
   return (
     <main>
       <Navigation />
@@ -151,30 +177,37 @@ export default function SponsorPage() {
             <span>Ways to Give</span>
           </h2>
 
-          <Card className="border-border mb-8">
-            <CardHeader>
-              <CardTitle className="text-foreground text-xl mb-4">Suggested Donation Amounts</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6">
-                {suggestedAmounts.map((amount) => (
-                  <Button
-                    key={amount}
-                    variant="outline"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 text-lg font-semibold"
-                  >
-                    ${amount}
-                  </Button>
-                ))}
-              </div>
+          {/* Zeffy Donation Component */}
+          {ZEFFY_FORM_URL && !showDonationForm ? (
+            <ZeffyDonation
+              zeffyFormUrl={ZEFFY_FORM_URL}
+              suggestedAmounts={suggestedAmounts}
+              onDonateClick={handleDonateClick}
+            />
+          ) : showDonationForm && ZEFFY_FORM_URL ? (
+            <div className="mb-8">
               <Button
                 variant="outline"
-                className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 text-lg font-semibold"
+                onClick={() => setShowDonationForm(false)}
+                className="mb-4"
               >
-                Custom Amount
+                ← Back to Amount Selection
               </Button>
-            </CardContent>
-          </Card>
+              <ZeffyEmbed formUrl={ZEFFY_FORM_URL} />
+            </div>
+          ) : (
+            <Card className="border-border mb-8">
+              <CardHeader>
+                <CardTitle className="text-foreground text-xl mb-4">Suggested Donation Amounts</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ZeffyDonation
+                  suggestedAmounts={suggestedAmounts}
+                  onDonateClick={handleDonateClick}
+                />
+              </CardContent>
+            </Card>
+          )}
 
           <div className="bg-secondary/10 rounded-xl p-6 mb-8">
             <div className="flex items-center gap-3 mb-4">
@@ -198,20 +231,36 @@ export default function SponsorPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg">
-              Donate Now
-            </Button>
-            <Link href="/programs">
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
-              >
-                Learn How Your Gift Works
-                <ArrowRight size={18} className="ml-2" />
-              </Button>
-            </Link>
-          </div>
+          {!showDonationForm && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {ZEFFY_FORM_URL ? (
+                <Button
+                  onClick={() => setShowDonationForm(true)}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
+                >
+                  Donate Now
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    alert("Zeffy form URL is not configured. Please contact the administrator or check the setup instructions.")
+                  }}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
+                >
+                  Donate Now
+                </Button>
+              )}
+              <Link href="/programs">
+                <Button
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
+                >
+                  Learn How Your Gift Works
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
