@@ -1,13 +1,89 @@
+"use client"
+
+import { useState } from "react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
-import { Heart, Globe2, Users, GraduationCap, DollarSign, CheckCircle, ArrowRight } from "lucide-react"
+import { Heart, Globe2, Users, GraduationCap, DollarSign, CheckCircle, ArrowRight, Loader2 } from "lucide-react"
+import { supabase } from "@/lib/supabase"
+import { toast } from "sonner"
 
 const suggestedAmounts = [5, 10, 25, 50, 75, 100, 200, 500]
 
 export default function SponsorPage() {
+  const [showDonationForm, setShowDonationForm] = useState(false)
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
+  const [customAmount, setCustomAmount] = useState("")
+  const [donationType, setDonationType] = useState<"one-time" | "recurring">("one-time")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [donorInfo, setDonorInfo] = useState({
+    name: "",
+    email: "",
+  })
+
+  const handleAmountSelect = (amount: number) => {
+    setSelectedAmount(amount)
+    setCustomAmount("")
+    setShowDonationForm(true)
+  }
+
+  const handleCustomAmount = () => {
+    setSelectedAmount(null)
+    setShowDonationForm(true)
+  }
+
+  const handleDonationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const amount = selectedAmount || parseFloat(customAmount)
+    if (!amount || amount <= 0) {
+      toast.error("Please enter a valid donation amount")
+      setIsSubmitting(false)
+      return
+    }
+
+    if (!donorInfo.name || !donorInfo.email) {
+      toast.error("Please fill in all required fields")
+      setIsSubmitting(false)
+      return
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("donations")
+        .insert([
+          {
+            donor_name: donorInfo.name,
+            donor_email: donorInfo.email,
+            amount: amount,
+            donation_type: donationType,
+            payment_status: "pending", // Will be updated when payment is processed
+          },
+        ])
+        .select()
+
+      if (error) throw error
+
+      toast.success("Donation submitted successfully! We'll process your payment and send a confirmation email.")
+      
+      // Reset form
+      setDonorInfo({ name: "", email: "" })
+      setSelectedAmount(null)
+      setCustomAmount("")
+      setShowDonationForm(false)
+    } catch (error: any) {
+      console.error("Error submitting donation:", error)
+      toast.error(error.message || "Failed to submit donation. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   return (
     <main>
       <Navigation />
@@ -160,7 +236,9 @@ export default function SponsorPage() {
                 {suggestedAmounts.map((amount) => (
                   <Button
                     key={amount}
+                    type="button"
                     variant="outline"
+                    onClick={() => handleAmountSelect(amount)}
                     className="border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 text-lg font-semibold"
                   >
                     ${amount}
@@ -168,7 +246,9 @@ export default function SponsorPage() {
                 ))}
               </div>
               <Button
+                type="button"
                 variant="outline"
+                onClick={handleCustomAmount}
                 className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 text-lg font-semibold"
               >
                 Custom Amount
@@ -197,21 +277,136 @@ export default function SponsorPage() {
             </p>
           </div>
 
+          {/* Donation Form */}
+          {showDonationForm && (
+            <Card className="border-primary/20 border-2 mb-8">
+              <CardHeader>
+                <CardTitle className="text-foreground">Complete Your Donation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleDonationSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="donor-name">
+                      Full Name <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="donor-name"
+                      value={donorInfo.name}
+                      onChange={(e) => setDonorInfo({ ...donorInfo, name: e.target.value })}
+                      required
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="donor-email">
+                      Email Address <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="donor-email"
+                      type="email"
+                      value={donorInfo.email}
+                      onChange={(e) => setDonorInfo({ ...donorInfo, email: e.target.value })}
+                      required
+                      placeholder="your@email.com"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="donation-type">Donation Type</Label>
+                    <Select value={donationType} onValueChange={(value: "one-time" | "recurring") => setDonationType(value)}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="one-time">One-time</SelectItem>
+                        <SelectItem value="recurring">Recurring (Monthly)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="donation-amount">
+                      Donation Amount ($) <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="donation-amount"
+                      type="number"
+                      min="1"
+                      step="0.01"
+                      value={selectedAmount ? selectedAmount.toString() : customAmount}
+                      onChange={(e) => {
+                        const value = e.target.value
+                        if (value) {
+                          setCustomAmount(value)
+                          setSelectedAmount(null)
+                        } else {
+                          setCustomAmount("")
+                        }
+                      }}
+                      required
+                      placeholder="Enter amount"
+                    />
+                  </div>
+
+                  <div className="flex gap-4 pt-4">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "Submit Donation"
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setShowDonationForm(false)
+                        setSelectedAmount(null)
+                        setCustomAmount("")
+                        setDonorInfo({ name: "", email: "" })
+                      }}
+                      disabled={isSubmitting}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+
+                  <p className="text-sm text-foreground/70 text-center">
+                    Note: Payment processing will be implemented in the next phase. This form records your donation intent.
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          )}
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg">
-              Donate Now
-            </Button>
-            <Link href="/programs">
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
+          {!showDonationForm && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                onClick={() => setShowDonationForm(true)}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
               >
-                Learn How Your Gift Works
-                <ArrowRight size={18} className="ml-2" />
+                Donate Now
               </Button>
-            </Link>
-          </div>
+              <Link href="/programs">
+                <Button
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
+                >
+                  Learn How Your Gift Works
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

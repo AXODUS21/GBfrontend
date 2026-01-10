@@ -12,7 +12,7 @@ export default function HeroSection() {
           Every child deserves access to quality education. Your support helps provide tutoring, mentorship, and essential educational materials and school supplies to students with demonstrated need in the United States and abroad.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/programs">
+          <Link href="/apply">
             <Button className="bg-primary-foreground text-primary hover:bg-opacity-90 px-8 py-6 text-lg">
               Apply for School Voucher
             </Button>

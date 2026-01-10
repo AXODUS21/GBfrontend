@@ -238,7 +238,7 @@ export default function VoucherSystem() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/programs">
+          <Link href="/apply">
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
               Apply for Voucher
             </Button>
