@@ -20,9 +20,11 @@ import ZeffyEmbed from "@/components/zeffy-embed";
 
 const suggestedAmounts = [5, 10, 25, 50, 75, 100, 200, 500];
 
-// TODO: Replace with your actual Zeffy form URL from your Zeffy dashboard
+// Zeffy form URL - can be set via environment variable or defaults to thermometer embed
 // Get this from: Zeffy Dashboard > Donations > My forms > Share > Embed your form
-const ZEFFY_FORM_URL = process.env.NEXT_PUBLIC_ZEFFY_FORM_URL || "";
+const ZEFFY_FORM_URL =
+  process.env.NEXT_PUBLIC_ZEFFY_FORM_URL ||
+  "https://www.zeffy.com/embed/thermometer/donate-to-make-a-difference-21717";
 
 export default function SponsorPage() {
   const [showDonationForm, setShowDonationForm] = useState(false);
