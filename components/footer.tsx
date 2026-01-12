@@ -52,7 +52,7 @@ export default function Footer() {
                   href="/programs"
                   className="hover:text-primary-foreground transition"
                 >
-                  Tutor Matching
+                  Tutor matching
                 </Link>
               </li>
               <li>
