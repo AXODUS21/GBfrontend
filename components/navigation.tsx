@@ -21,7 +21,7 @@ export default function Navigation() {
               className="h-10 w-auto object-contain"
               priority
             />
-            </Link>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
