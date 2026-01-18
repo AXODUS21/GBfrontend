@@ -14,10 +14,10 @@ const voucherDenominations = [
 const steps = [
   {
     step: 1,
-    title: "NGO Issues Voucher",
+    title: "GBFF Issues Voucher",
     icon: DollarSign,
     color: "bg-blue-500",
-    text: "NGO issues vouchers to U.S. schools. Each voucher is earmarked for educational support services or school supplies.",
+    text: "GBFF issues vouchers to U.S. schools. Each voucher is earmarked for educational support services or school supplies.",
   },
   {
     step: 2,
@@ -99,7 +99,7 @@ export default function VoucherSystem() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-primary">✓</span>
-                STEM & SEL Programs
+                STEM and interest based learning Programs
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-primary">✓</span>

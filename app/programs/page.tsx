@@ -9,13 +9,13 @@ import { BookOpen, Code2, Heart, Users, GraduationCap, Package, ArrowRight, Scho
 const programs = [
   {
     icon: BookOpen,
-    title: "Tutoring Scholarships",
+    title: "Scholarships",
     description: "Academic and mentorship support for selected students",
   },
   {
     icon: GraduationCap,
-    title: "College Teaching Fellowship",
-    description: "College students mentor younger learners while completing degrees",
+    title: "Student College and youth Fellowship",
+    description: "College students mentor younger learners while completing their education",
   },
   {
     icon: Heart,
@@ -62,7 +62,7 @@ export default function ProgramsPage() {
               Each grant or donation issued to a participating U.S. school is paired with a parallel education access award to a partner school serving students in under-resourced communities abroad. Both schools independently select their students and maintain records of program use, allowing the Foundation to support education access at two sites while preserving accountability and compliance.
             </p>
             <p>
-              The program also incorporates a College Teaching Fellowship, through which under-resourced college students receive educational training, mentorship experience, and academic support while providing tutoring and learning assistance to younger students. This service-based model strengthens educational outcomes for both groups and promotes college completion, workforce readiness, and leadership development.
+              The program also incorporates a Student Fellowship Program, through which under-resourced college students receive educational training, mentorship experience, and academic support while providing tutoring and learning assistance to younger students. This service-based model strengthens educational outcomes for both groups and promotes college completion, workforce readiness, and leadership development.
             </p>
             <p>
               By addressing academic support, learning resources, and mentorship together, Support One, Empower Two creates a sustainable cycle of learning that benefits students, schools, and communities locally and globally.
