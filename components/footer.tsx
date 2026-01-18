@@ -198,6 +198,15 @@ export default function Footer() {
                   Whistleblower Policy
                 </Link>
               </li>
+              <li>
+                <a 
+                  href="/GBFF IRS 501c3 Determination Letter.pdf"
+                  download="GBFF IRS 501c3 Determination Letter.pdf"
+                  className="hover:text-primary-foreground transition cursor-pointer"
+                > 
+                  IRS Determination Letter
+                </a>
+              </li>
             </ul>
           </div>
           <div>
