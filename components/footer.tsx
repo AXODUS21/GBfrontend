@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-5 gap-8 mb-12">
           <div>
             <h3 className="font-bold text-lg mb-4">Programs</h3>
             <ul className="space-y-2 text-primary-foreground/80">
@@ -151,6 +151,51 @@ export default function Footer() {
                   className="hover:text-primary-foreground transition"
                 >
                   Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg mb-4">Policies</h3>
+            <ul className="space-y-2 text-primary-foreground/80">
+              <li>
+                <Link
+                  href="/policies/code_of_ethics"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Code of Ethics
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/policies/conflict_of_interest_policy"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Conflict of Interest
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/policies/legal_compliance_disclosure"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Legal & Compliance
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/policies/terms_and_conditions"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/policies/whistle_blower_policy"
+                  className="hover:text-primary-foreground transition"
+                >
+                  Whistleblower Policy
                 </Link>
               </li>
             </ul>
