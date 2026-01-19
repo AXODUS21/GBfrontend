@@ -15,8 +15,8 @@ const impacts = [
   },
   {
     icon: GraduationCap,
-    title: "College Fellowship",
-    description: "Under-resourced college students gain teaching experience, mentorship skills, and financial support while completing their degrees.",
+    title: "Student Fellowship",
+    description: "Under-resourced students gain teaching experience, mentorship, leadership skills, and financial support while completing their education.",
   },
 ]
 

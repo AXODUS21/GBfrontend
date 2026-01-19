@@ -276,7 +276,7 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="partnership-school" className="block font-semibold text-foreground mb-2">
-                      School Name
+                      School/Company Name
                     </label>
                     <input
                       id="partnership-school"

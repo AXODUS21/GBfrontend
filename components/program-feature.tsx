@@ -12,15 +12,13 @@ export default function ProgramFeature() {
           </h2>
           <p className="text-2xl md:text-3xl font-semibold text-foreground/80 mb-4">One Grant. Two Schools. Two Futures.</p>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            One voucher supports students here and abroad, providing tutoring, academic support, or educational supplies.
+            One voucher supports students In the US and abroad, providing tutoring, academic support, or educational supplies.
           </p>
         </div>
         <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-8 md:p-12">
           <div className="text-center">
-            <div className="inline-block bg-primary text-primary-foreground rounded-2xl px-8 py-12 mb-8">
-              <p className="text-sm font-semibold opacity-75">Impact Model</p>
-              <p className="text-4xl font-bold">2x</p>
-              <p className="text-sm opacity-75 mt-2">Students Empowered</p>
+            <div className="flex justify-center items-center">
+             <img src="/2x.png" alt="Program Feature" width={500} height={500} />
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Link href="/programs">

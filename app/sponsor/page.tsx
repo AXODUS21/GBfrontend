@@ -78,6 +78,107 @@ export default function SponsorPage() {
         </div>
       </section>
 
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-balance flex items-center justify-center gap-3">
+            <span className="text-4xl">💵</span>
+            <span>Ways to Give</span>
+          </h2>
+
+          {/* Zeffy Donation Component */}
+          {ZEFFY_FORM_URL && !showDonationForm ? (
+            <ZeffyDonation
+              zeffyFormUrl={ZEFFY_FORM_URL}
+              suggestedAmounts={suggestedAmounts}
+              onDonateClick={handleDonateClick}
+            />
+          ) : showDonationForm && ZEFFY_FORM_URL ? (
+            <div className="mb-8">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowDonationForm(false)}
+                className="mb-4"
+              >
+                ← Back to Amount Selection
+              </Button>
+              <ZeffyEmbed formUrl={ZEFFY_FORM_URL} />
+            </div>
+          ) : (
+            <Card className="border-border mb-8">
+              <CardHeader>
+                <CardTitle className="text-foreground text-xl mb-4">
+                  Suggested Donation Amounts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ZeffyDonation
+                  suggestedAmounts={suggestedAmounts}
+                  onDonateClick={handleDonateClick}
+                />
+              </CardContent>
+            </Card>
+          )}
+
+          <div className="bg-secondary/10 rounded-xl p-6 mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-green-500/10 rounded-full w-10 h-10 flex items-center justify-center">
+                <CheckCircle className="text-green-600" size={20} />
+              </div>
+              <h3 className="font-semibold text-foreground text-lg">
+                One-time or recurring donations
+              </h3>
+            </div>
+            <p className="text-foreground/70 ml-[52px]">
+              Choose to make a one-time donation or set up a recurring monthly
+              contribution for sustained impact.
+            </p>
+          </div>
+
+          <div className="bg-primary/5 border-2 border-primary rounded-xl p-8 text-center mb-8">
+            <p className="text-xl md:text-2xl font-semibold text-foreground mb-2">
+              All donations are tax-deductible to the extent allowed by law.
+            </p>
+            <p className="text-lg text-foreground/80 font-medium">
+              One gift. Two schools. Lasting impact.
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          {!showDonationForm && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {ZEFFY_FORM_URL ? (
+                <Button
+                  onClick={() => setShowDonationForm(true)}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
+                >
+                  Donate Now
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    alert(
+                      "Zeffy form URL is not configured. Please contact the administrator or check the setup instructions."
+                    );
+                  }}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
+                >
+                  Donate Now
+                </Button>
+              )}
+              <Link href="/programs">
+                <Button
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
+                >
+                  Learn How Your Gift Works
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
       {/* How Your Donation Works */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -199,7 +300,7 @@ export default function SponsorPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-balance flex items-center justify-center gap-3">
             <span className="text-4xl">🎓</span>
-            <span>Supporting the Next Generation of Educators</span>
+            <span>Supporting the Next Generation of Youth and Educators</span>
           </h2>
           <div className="bg-card border border-border rounded-xl p-8 md:p-12">
             <div className="flex items-start gap-4">
@@ -208,15 +309,15 @@ export default function SponsorPage() {
               </div>
               <div className="prose prose-lg max-w-none">
                 <p className="text-foreground/80 text-lg">
-                  Donations also support under-resourced college students
-                  through our College Teaching Fellowship, providing stipends
-                  while they tutor and mentor younger learners.
+                  Donations also support under-resourced students
+                  through our Student Fellowship, providing stipends
+                  while they tutor, assist communities and mentor younger learners.
                 </p>
                 <p className="text-foreground/70 mt-4">
                   This service-based model creates a sustainable cycle of
-                  learning that benefits both college students and younger
-                  learners, promoting college completion, workforce readiness,
-                  and leadership development.
+                  learning that benefits both students and younger
+                  learners, promoting education completion, workforce readiness,
+                  leadership and skills development.
                 </p>
               </div>
             </div>
@@ -225,107 +326,6 @@ export default function SponsorPage() {
       </section>
 
       {/* Ways to Give */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-balance flex items-center justify-center gap-3">
-            <span className="text-4xl">💵</span>
-            <span>Ways to Give</span>
-          </h2>
-
-          {/* Zeffy Donation Component */}
-          {ZEFFY_FORM_URL && !showDonationForm ? (
-            <ZeffyDonation
-              zeffyFormUrl={ZEFFY_FORM_URL}
-              suggestedAmounts={suggestedAmounts}
-              onDonateClick={handleDonateClick}
-            />
-          ) : showDonationForm && ZEFFY_FORM_URL ? (
-            <div className="mb-8">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setShowDonationForm(false)}
-                className="mb-4"
-              >
-                ← Back to Amount Selection
-              </Button>
-              <ZeffyEmbed formUrl={ZEFFY_FORM_URL} />
-            </div>
-          ) : (
-            <Card className="border-border mb-8">
-              <CardHeader>
-                <CardTitle className="text-foreground text-xl mb-4">
-                  Suggested Donation Amounts
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ZeffyDonation
-                  suggestedAmounts={suggestedAmounts}
-                  onDonateClick={handleDonateClick}
-                />
-              </CardContent>
-            </Card>
-          )}
-
-          <div className="bg-secondary/10 rounded-xl p-6 mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-green-500/10 rounded-full w-10 h-10 flex items-center justify-center">
-                <CheckCircle className="text-green-600" size={20} />
-              </div>
-              <h3 className="font-semibold text-foreground text-lg">
-                One-time or recurring donations
-              </h3>
-            </div>
-            <p className="text-foreground/70 ml-[52px]">
-              Choose to make a one-time donation or set up a recurring monthly
-              contribution for sustained impact.
-            </p>
-          </div>
-
-          <div className="bg-primary/5 border-2 border-primary rounded-xl p-8 text-center mb-8">
-            <p className="text-xl md:text-2xl font-semibold text-foreground mb-2">
-              All donations are tax-deductible to the extent allowed by law.
-            </p>
-            <p className="text-lg text-foreground/80 font-medium">
-              One gift. Two schools. Lasting impact.
-            </p>
-          </div>
-
-          {/* CTA Buttons */}
-          {!showDonationForm && (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {ZEFFY_FORM_URL ? (
-                <Button
-                  onClick={() => setShowDonationForm(true)}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
-                >
-                  Donate Now
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => {
-                    alert(
-                      "Zeffy form URL is not configured. Please contact the administrator or check the setup instructions."
-                    );
-                  }}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
-                >
-                  Donate Now
-                </Button>
-              )}
-              <Link href="/programs">
-                <Button
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary/5 px-8 py-6 text-lg bg-transparent w-full sm:w-auto"
-                >
-                  Learn How Your Gift Works
-                  <ArrowRight size={18} className="ml-2" />
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Tax Information */}
       <section className="py-16 md:py-24 bg-secondary/10">
