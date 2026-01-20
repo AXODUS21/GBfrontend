@@ -231,9 +231,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-primary-foreground/70 text-sm mb-4 md:mb-0">
-            &copy; 2025 Global Bright Futures Foundation. All rights reserved.
-          </p>
+          <div className="text-primary-foreground/70 text-sm space-y-1 mb-4 md:mb-0">
+            <p>&copy; 2025 Global Bright Futures Foundation. All rights reserved.</p>
+            <p>
+              Global Bright Futures Foundation, Inc. | US 501(c)(3) nonprofit organization.
+              Donations are tax-deductible as permitted by law.
+            </p>
+          </div>
           <div className="flex gap-4">
             <a
               href="https://www.facebook.com/gbffinc"

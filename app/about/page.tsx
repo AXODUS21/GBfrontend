@@ -1,8 +1,9 @@
-import Navigation from "@/components/navigation"
-import Footer from "@/components/footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Target, Shield } from "lucide-react"
-import { BoardMember } from "@/components/board-member"
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { Users, Target, Shield } from "lucide-react";
+import { BoardMember } from "@/components/board-member";
 
 export default function AboutPage() {
   return (
@@ -11,9 +12,12 @@ export default function AboutPage() {
 
       <section className="bg-gradient-to-br from-primary to-accent/80 text-primary-foreground py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-balance">About Us</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
+            About Us
+          </h1>
           <p className="text-lg md:text-xl opacity-95 text-balance">
-            Empowering students locally and globally through school-to-school partnerships and educational equity.
+            Empowering students locally and globally through school-to-school
+            partnerships and educational equity.
           </p>
         </div>
       </section>
@@ -21,29 +25,45 @@ export default function AboutPage() {
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">Our Mission & Vision</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
+              Our Mission & Vision
+            </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-foreground text-2xl mb-2">Mission Statement</CardTitle>
+                  <CardTitle className="text-foreground text-2xl mb-2">
+                    Mission Statement
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-foreground/80 text-lg leading-relaxed">
-                    Global Bright Futures Foundation empowers underserved learners by expanding access to scholarships, tutoring, mentorship, and innovative educational programs that foster academic growth, opportunity, and lifelong success—locally and globally.
+                    Global Bright Futures Foundation empowers underserved
+                    learners by expanding access to scholarships, tutoring,
+                    mentorship, and innovative educational programs that foster
+                    academic growth, opportunity, and lifelong success—locally
+                    and globally.
                   </p>
                 </CardContent>
               </Card>
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-foreground text-2xl mb-2">Vision Statement</CardTitle>
+                  <CardTitle className="text-foreground text-2xl mb-2">
+                    Vision Statement
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <p className="text-foreground/80 text-lg leading-relaxed">
-                      We envision a world where every learner regardless of income, location, or circumstance has access to meaningful, high-quality education pathways that unlock potential, strengthen communities, and create lasting opportunity across generations and borders.
+                      We envision a world where every learner regardless of
+                      income, location, or circumstance has access to
+                      meaningful, high-quality education pathways that unlock
+                      potential, strengthen communities, and create lasting
+                      opportunity across generations and borders.
                     </p>
                     <p className="text-foreground/70 text-base leading-relaxed border-t border-border pt-4 italic">
-                      Through ethical partnerships, innovation, and transparency, education becomes a shared global opportunity not a privilege.
+                      Through ethical partnerships, innovation, and
+                      transparency, education becomes a shared global
+                      opportunity not a privilege.
                     </p>
                   </div>
                 </CardContent>
@@ -51,7 +71,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold text-foreground mb-12">Our Values</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-12">
+            Our Values
+          </h2>
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             <Card className="border-border">
               <CardHeader>
@@ -62,8 +84,8 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-foreground/70">
-                  We believe every student deserves access to quality education and mentorship, regardless of zip code
-                  or economic status.
+                  We believe every student deserves access to quality education
+                  and mentorship, regardless of zip code or economic status.
                 </p>
               </CardContent>
             </Card>
@@ -77,8 +99,9 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-foreground/70">
-                  We partner with schools, communities, and organizations to create sustainable, collaborative solutions
-                  for educational access.
+                  We partner with schools, communities, and organizations to
+                  create sustainable, collaborative solutions for educational
+                  access.
                 </p>
               </CardContent>
             </Card>
@@ -88,19 +111,31 @@ export default function AboutPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="text-primary" size={24} />
                 </div>
-                <CardTitle className="text-foreground">Accountability</CardTitle>
+                <CardTitle className="text-foreground">
+                  Accountability
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-foreground/70">
-                  We maintain transparent, audit-ready operations and prioritize school independence and student welfare
-                  above all else.
+                  We maintain transparent, audit-ready operations and prioritize
+                  school independence and student welfare above all else.
                 </p>
               </CardContent>
             </Card>
           </div>
 
           <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">Board of Directors</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
+              Board of Directors
+            </h2>
+            <div className="flex justify-center mb-6">
+              <Link
+                href="/board-of-directors"
+                className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-primary-foreground font-medium hover:bg-primary/90 transition"
+              >
+                View Board of Directors
+              </Link>
+            </div>
             <div className="space-y-6">
               <BoardMember
                 name="Ilyne Cendy Root"
@@ -153,8 +188,10 @@ Through thoughtful leadership, school-driven programs, and a commitment to trans
                   "Partnered with schools and community organizations in the U.S. and abroad",
                   "Supported college students through education-focused training and service opportunities",
                   "Served as School Lead in U.S. elementary education",
-                  "Ongoing professional development and graduate studies in school leadership"
+                  "Ongoing professional development and graduate studies in school leadership",
                 ]}
+                imageSrc="/ilyne.jpg"
+                imageAlt="Portrait of Ilyne Cendy Root"
               />
               <BoardMember
                 name="Joseph Root"
@@ -169,6 +206,8 @@ In his role as Vice President, Joseph works closely with the President and Board
 Alongside his wife, Founder and President Ilyne Cendy Root, Joseph has actively supported initiatives providing educational resources, school supplies, mentorship, disaster relief, and outreach to homeless and underserved children. He is dedicated to leveraging youth sports, mentorship, and experiential learning as pathways for education, personal growth, and community empowerment.
 
 Joseph's leadership philosophy is rooted in the belief that education and personal development thrive when interest-based engagement, mentorship, and ethical leadership come together. Through his service at Global Bright Futures Foundation, he continues to champion programs that connect learning to real-world experiences, inspire underserved youth, and create opportunities for empowerment, achievement, and lifelong success."
+                imageSrc="/joseph.jpg"
+                imageAlt="Portrait of Joseph Root"
               />
               <BoardMember
                 name="Reyshyl Durban"
@@ -185,6 +224,8 @@ In a leadership capacity, Reyshyl played a key role in implementing mission-driv
 As a Board Director of Global Bright Futures Foundation Inc., Reyshyl contributes valuable insight grounded in faith-informed leadership, education management, and community-based service. Reyshyl is deeply committed to advancing programs that promote equitable access to education, holistic student development, and sustainable community impact.
 
 Reyshyl's service is guided by a core belief shared by the Foundation: that education, when grounded in purpose and compassion, has the power to transform lives and strengthen communities."
+                imageSrc="/reyshyl.jpg"
+                imageAlt="Portrait of Reyshyl Durban"
               />
               <BoardMember
                 name="Verna Jean Vaniza G. Limocon"
@@ -201,6 +242,8 @@ The impact of this outreach has been significant, with children and families exp
 As a Director of Global Bright Futures Foundation Inc., Verna contributes her experience, compassion, and commitment to educational equity. She is especially passionate about programs that empower students while also supporting college learners who serve as mentors and tutors—creating a sustainable cycle of learning, opportunity, and shared growth.
 
 Through her leadership, Verna is dedicated to advancing the Foundation's mission of expanding access to education for underserved learners in the United States and abroad. She believes that when children are supported through education, entire communities are strengthened and brighter futures become possible."
+                imageSrc="/verna.jpg"
+                imageAlt="Portrait of Verna Jean Vaniza G. Limocon"
               />
               <BoardMember
                 name="Cherry Ann A. Pasalgon"
@@ -217,40 +260,55 @@ Beyond the classroom, Cherry Ann is deeply committed to education equity and chi
 As a Board Director of Global Bright Futures Foundation Inc., Cherry Ann provides guidance grounded in both educational expertise and international perspective. She supports the Foundation's mission to expand educational access, strengthen school-based support systems, and ensure that programs are ethically implemented, culturally responsive, and aligned with the needs of children and communities served.
 
 Her dedication reflects a shared belief at the heart of Global Bright Futures Foundation: that every child deserves the opportunity to learn, grow, and thrive through safe, high-quality, and equitable educational experiences."
+                imageSrc="/cherry.jpg"
+                imageAlt="Portrait of Cherry Ann A. Pasalgon"
               />
             </div>
           </div>
 
           <div className="bg-secondary/10 rounded-xl p-8 mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-6">Our Governance</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6">
+              Our Governance
+            </h3>
             <div className="space-y-4">
               <div>
-                <h4 className="font-bold text-foreground mb-2">Conflict of Interest Policy</h4>
+                <h4 className="font-bold text-foreground mb-2">
+                  Conflict of Interest Policy
+                </h4>
                 <p className="text-foreground/70">
-                  Our board members and staff adhere to strict conflict of interest policies to ensure ethical
-                  decision-making.
+                  Our board members and staff adhere to strict conflict of
+                  interest policies to ensure ethical decision-making.
                 </p>
               </div>
               <div>
-                <h4 className="font-bold text-foreground mb-2">Non-Discrimination Policy</h4>
+                <h4 className="font-bold text-foreground mb-2">
+                  Non-Discrimination Policy
+                </h4>
                 <p className="text-foreground/70">
-                  We serve all students without regard to race, color, religion, sex, national origin, or disability.
+                  We serve all students without regard to race, color, religion,
+                  sex, national origin, or disability.
                 </p>
               </div>
               <div>
-                <h4 className="font-bold text-foreground mb-2">Whistleblower Protection</h4>
+                <h4 className="font-bold text-foreground mb-2">
+                  Whistleblower Protection
+                </h4>
                 <p className="text-foreground/70">
-                  We maintain policies to protect individuals who report suspected misconduct or violations of policy.
+                  We maintain policies to protect individuals who report
+                  suspected misconduct or violations of policy.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="bg-primary/5 border-2 border-primary rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Transparency & Financial Reports</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Transparency & Financial Reports
+            </h3>
             <p className="text-foreground/70 mb-6">
-              As a 501(c)(3) nonprofit organization, we are committed to full transparency and accountability. Access
-              our financial statements and annual reports.
+              As a 501(c)(3) nonprofit organization, we are committed to full
+              transparency and accountability. Access our financial statements
+              and annual reports.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition">
@@ -269,5 +327,5 @@ Her dedication reflects a shared belief at the heart of Global Bright Futures Fo
 
       <Footer />
     </main>
-  )
+  );
 }

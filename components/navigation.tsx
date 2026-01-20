@@ -50,6 +50,12 @@ export default function Navigation() {
               About
             </Link>
             <Link
+              href="/board-of-directors"
+              className="text-foreground hover:text-primary transition"
+            >
+              Board
+            </Link>
+            <Link
               href="/contact"
               className="text-foreground hover:text-primary transition"
             >
@@ -99,6 +105,12 @@ export default function Navigation() {
               className="block text-foreground hover:text-primary py-2"
             >
               About
+            </Link>
+            <Link
+              href="/board-of-directors"
+              className="block text-foreground hover:text-primary py-2"
+            >
+              Board
             </Link>
             <Link
               href="/contact"

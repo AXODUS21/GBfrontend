@@ -11,6 +11,8 @@ interface BoardMemberProps {
   shortDescription: string
   fullDescription: string
   highlights?: string[]
+  imageSrc?: string
+  imageAlt?: string
 }
 
 export function BoardMember({
@@ -19,12 +21,26 @@ export function BoardMember({
   shortDescription,
   fullDescription,
   highlights,
+  imageSrc,
+  imageAlt,
 }: BoardMemberProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <Card className="border-border">
       <CardHeader>
+        {imageSrc && (
+          <div className="mb-4 flex justify-center">
+            <div className="h-32 w-32 overflow-hidden rounded-full border border-border bg-muted">
+              <img
+                src={imageSrc}
+                alt={imageAlt || `${name} portrait`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        )}
         <CardTitle className="text-foreground text-xl">{name}</CardTitle>
         <p className="text-primary font-medium text-sm">{title}</p>
       </CardHeader>
