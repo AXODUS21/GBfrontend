@@ -2,127 +2,96 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-white border-b border-border sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center gap-2">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          <Link href="/" className="flex items-center">
             <Image
               src="/gbf.png"
               alt="Global Bright Futures Foundation"
               width={120}
               height={40}
-              className="h-10 w-auto object-contain"
+              className={`h-10 w-auto object-contain transition-all ${
+                scrolled ? "" : "brightness-0 invert"
+              }`}
               priority
             />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-foreground hover:text-primary transition"
-            >
-              Home
-            </Link>
-            <Link
-              href="/programs"
-              className="text-foreground hover:text-primary transition"
-            >
-              Programs
-            </Link>
-            <Link
-              href="/partnerships"
-              className="text-foreground hover:text-primary transition"
-            >
-              Partnerships
-            </Link>
-            <Link
-              href="/about"
-              className="text-foreground hover:text-primary transition"
-            >
-              About
-            </Link>
-            <Link
-              href="/board-of-directors"
-              className="text-foreground hover:text-primary transition"
-            >
-              Board
-            </Link>
-            <Link
-              href="/contact"
-              className="text-foreground hover:text-primary transition"
-            >
-              Contact
-            </Link>
+            {["About", "Programs", "Impact", "Contact"].map((item) => (
+              <Link
+                key={item}
+                href={item === "Impact" ? "/about" : `/${item.toLowerCase()}`}
+                className={`text-sm font-medium transition-all hover:opacity-70 ${
+                  scrolled ? "text-foreground" : "text-white"
+                }`}
+              >
+                {item}
+              </Link>
+            ))}
             <Link
               href="/sponsor"
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 transition"
+              className="bg-accent text-accent-foreground px-6 py-3 rounded-full text-sm font-bold hover:bg-accent/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
-              Sponsor
+              Donate Now
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className={`md:hidden transition-colors ${
+              scrolled ? "text-foreground" : "text-white"
+            }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            <Link
-              href="/"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              Home
-            </Link>
-            <Link
-              href="/programs"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              Programs
-            </Link>
-            <Link
-              href="/partnerships"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              Partnerships
-            </Link>
-            <Link
-              href="/about"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              About
-            </Link>
-            <Link
-              href="/board-of-directors"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              Board
-            </Link>
-            <Link
-              href="/contact"
-              className="block text-foreground hover:text-primary py-2"
-            >
-              Contact
-            </Link>
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl py-6 px-6 space-y-1">
+            {["About", "Programs", "Impact", "Contact"].map((item) => (
+              <Link
+                key={item}
+                href={item === "Impact" ? "/about" : `/${item.toLowerCase()}`}
+                className="block text-foreground py-3 text-lg font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                {item}
+              </Link>
+            ))}
             <Link
               href="/sponsor"
-              className="block bg-primary text-primary-foreground px-4 py-2 rounded-lg"
+              className="block bg-accent text-accent-foreground px-6 py-4 rounded-full text-center text-lg font-bold mt-4"
+              onClick={() => setIsOpen(false)}
             >
-              Sponsor
+              Donate Now
             </Link>
           </div>
         )}

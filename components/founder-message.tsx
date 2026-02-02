@@ -1,32 +1,44 @@
+import Image from "next/image"
+
 export default function FounderMessage() {
   return (
-    <section className="py-16 md:py-24 bg-secondary/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-balance">
-          A Message from Our Founder
-        </h2>
-        <div className="bg-card border border-border rounded-xl p-8 md:p-12 shadow-sm">
-          <div className="prose prose-lg max-w-none text-foreground/80 space-y-6">
-            <p>
-              Education changed my life—not because it was easy to access, but because someone believed in my potential when resources were limited.
-            </p>
-            <p>
-              As a child navigating life without consistent support, I learned firsthand how powerful education can be when paired with guidance, encouragement, and opportunity. That belief has guided every step of my journey as an educator and is the foundation of Global Bright Futures Foundation Inc.
-            </p>
-            <p>
-              Through trusted school partnerships, our programs expand access to tutoring, mentorship, and essential educational resources for students who need them most. Schools identify learners with the greatest need, ensuring support is delivered responsibly, equitably, and with accountability.
-            </p>
-            <p>
-              When you give, you are not simply making a donation—you are opening doors to learning, confidence, and possibility. Your support helps students gain the tools they need to succeed and empowers future educators to grow through service and mentorship.
-            </p>
-            <p>
-              Together, we can remove barriers to education and create lasting opportunities—locally and globally.
-            </p>
+    <section className="py-20 md:py-28 bg-muted">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Image */}
+          <div className="relative">
+            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/ilyne.jpg"
+                alt="Ilyne Cendy Root, Founder"
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full -z-10" />
+            <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full -z-10" />
+          </div>
+          
+          {/* Content */}
+          <div>
+            <span className="text-sm font-bold text-primary uppercase tracking-wider mb-2 block">
+              A Message from Our Founder
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              "Education changed my life"
+            </h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Orphaned at a young age, I learned early what it meant to navigate life without consistent support—developing resilience and a deep understanding of the barriers faced by students without stable guidance or resources.
+              </p>
+              <p>
+                That belief has guided every step of my journey as an educator and is the foundation of Global Bright Futures Foundation. Through trusted school partnerships, our programs expand access to tutoring, mentorship, and essential educational resources for students who need them most.
+              </p>
+            </div>
             <div className="mt-8 pt-6 border-t border-border">
-              <p className="font-semibold text-foreground mb-1">With gratitude,</p>
-              <p className="font-semibold text-foreground">Ilyne Cendy Root</p>
-              <p className="text-foreground/70">Founder & President</p>
-              <p className="text-foreground/70">Global Bright Futures Foundation Inc.</p>
+              <p className="font-bold text-foreground text-lg">Ilyne Cendy Root</p>
+              <p className="text-muted-foreground">Founder & President</p>
             </div>
           </div>
         </div>
@@ -34,7 +46,3 @@ export default function FounderMessage() {
     </section>
   )
 }
-
-
-
-

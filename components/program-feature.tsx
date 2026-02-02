@@ -1,36 +1,71 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { CheckCircle } from "lucide-react"
+
+const features = [
+  "Tutoring & academic support",
+  "Mentorship programs",
+  "Educational materials",
+  "STEM enrichment",
+]
 
 export default function ProgramFeature() {
   return (
-    <section className="bg-secondary/20 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
-            Support One, Empower Two: Education Access Program
-          </h2>
-          <p className="text-2xl md:text-3xl font-semibold text-foreground/80 mb-4">One Grant. Two Schools. Two Futures.</p>
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            One voucher supports students In the US and abroad, providing tutoring, academic support, or educational supplies.
-          </p>
-        </div>
-        <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-8 md:p-12">
-          <div className="text-center">
-            <div className="flex justify-center items-center">
-             <img src="/2x.png" alt="Program Feature" width={500} height={500} />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+    <section className="py-20 md:py-28 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          {/* Content */}
+          <div className="order-2 md:order-1">
+            <span className="text-sm font-bold text-primary uppercase tracking-wider mb-2 block">
+              How It Works
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+              One Gift.
+              <br />
+              <span className="text-primary">Two Schools.</span>
+              <br />
+              Lasting Impact.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Our unique model pairs U.S. schools with partner schools abroad. Every voucher supports students on both sides—doubling the impact of every donation.
+            </p>
+            
+            <ul className="space-y-3 mb-8">
+              {features.map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <CheckCircle className="text-primary flex-shrink-0" size={20} />
+                  <span className="text-foreground">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/programs">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Learn More <ArrowRight size={18} className="ml-2" />
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base font-bold rounded-full">
+                  Learn More
                 </Button>
               </Link>
               <Link href="/sponsor">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary/5 bg-transparent">
+                <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary/5 px-8 py-6 text-base font-bold rounded-full bg-transparent">
                   Donate Now
                 </Button>
               </Link>
+            </div>
+          </div>
+          
+          {/* Image */}
+          <div className="order-1 md:order-2 relative">
+            <div className="relative">
+              <Image 
+                src="/2x.png" 
+                alt="Support One, Empower Two" 
+                width={500} 
+                height={500}
+                className="w-full rounded-2xl shadow-2xl"
+              />
+              {/* Decorative gradient */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl -z-10" />
             </div>
           </div>
         </div>
