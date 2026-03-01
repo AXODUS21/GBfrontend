@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { FadeIn, StaggerChildren, StaggerItem, CountUp, DrawLine } from "@/components/motion"
 
 const stats = [
   { value: 2, suffix: "x", label: "Impact Per Donation", description: "Every voucher helps students in the US and abroad" },
@@ -8,78 +8,55 @@ const stats = [
   { value: 10, suffix: "+", label: "Hours of Tutoring", description: "Per $200 voucher allocated" },
 ]
 
-function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const [hasAnimated, setHasAnimated] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true)
-          let start = 0
-          const duration = 2000
-          const startTime = Date.now()
-          
-          const animate = () => {
-            const now = Date.now()
-            const progress = Math.min((now - startTime) / duration, 1)
-            const easeOut = 1 - Math.pow(1 - progress, 3)
-            setCount(Math.floor(easeOut * value))
-            
-            if (progress < 1) {
-              requestAnimationFrame(animate)
-            } else {
-              setCount(value)
-            }
-          }
-          animate()
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [value, hasAnimated])
-
-  return (
-    <div ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary">
-      {count}{suffix}
-    </div>
-  )
-}
-
 export default function ImpactSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Our Impact in Numbers
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every donation creates real, measurable change for students around the world.
-          </p>
+    <section className="section-padding bg-background relative overflow-hidden">
+      {/* Subtle background decoration */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <FadeIn>
+            <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">
+              Our Reach
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5">
+              Our Impact in Numbers
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Every donation creates real, measurable change for students around the world.
+            </p>
+          </FadeIn>
+          <DrawLine className="w-16 h-0.5 bg-accent mx-auto mt-8" delay={0.4} />
         </div>
         
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+        <StaggerChildren className="grid md:grid-cols-3 gap-12 md:gap-8" staggerDelay={0.15}>
           {stats.map((stat, idx) => (
-            <div key={idx} className="text-center">
-              <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-              <h3 className="text-xl font-bold text-foreground mt-4 mb-2">
-                {stat.label}
-              </h3>
-              <p className="text-muted-foreground">
-                {stat.description}
-              </p>
-            </div>
+            <StaggerItem key={idx}>
+              <div className="text-center group">
+                <div className="relative inline-block mb-4">
+                  <CountUp
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary"
+                  />
+                  {/* Subtle glow behind number */}
+                  <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mt-4 mb-3">
+                  {stat.label}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {stat.description}
+                </p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerChildren>
       </div>
     </section>
   )

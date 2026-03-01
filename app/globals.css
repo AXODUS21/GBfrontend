@@ -5,53 +5,53 @@
 
 :root {
   /* Education NGO Color Palette - Warm, Approachable, Trustworthy */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.2 0.02 250);
+  --background: oklch(0.99 0.005 80);
+  --foreground: oklch(0.15 0.02 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.02 250);
+  --card-foreground: oklch(0.15 0.02 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.02 250);
+  --popover-foreground: oklch(0.15 0.02 250);
   
-  /* Friendly blue - education, trust, hope */
-  --primary: oklch(0.5 0.18 240);
+  /* Rich blue - education, trust, hope */
+  --primary: oklch(0.48 0.2 250);
   --primary-foreground: oklch(0.99 0 0);
   
-  /* Light cream backgrounds */
-  --secondary: oklch(0.98 0.01 80);
-  --secondary-foreground: oklch(0.25 0.02 250);
+  /* Warm cream backgrounds */
+  --secondary: oklch(0.97 0.012 75);
+  --secondary-foreground: oklch(0.2 0.02 250);
   
   --muted: oklch(0.96 0.01 80);
-  --muted-foreground: oklch(0.45 0.02 250);
+  --muted-foreground: oklch(0.42 0.02 250);
   
-  /* Warm orange accent - energy, optimism, action */
-  --accent: oklch(0.7 0.18 50);
-  --accent-foreground: oklch(0.15 0 0);
+  /* Warm coral/orange accent - energy, optimism, action */
+  --accent: oklch(0.68 0.19 40);
+  --accent-foreground: oklch(0.99 0.005 80);
   
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
   
   /* Soft borders */
-  --border: oklch(0.9 0.01 80);
+  --border: oklch(0.92 0.008 80);
   --input: oklch(0.97 0.01 80);
-  --ring: oklch(0.5 0.18 240);
+  --ring: oklch(0.48 0.2 250);
   
-  /* Chart colors - educational palette */
-  --chart-1: oklch(0.5 0.18 240);
-  --chart-2: oklch(0.7 0.18 50);
+  /* Chart colors */
+  --chart-1: oklch(0.48 0.2 250);
+  --chart-2: oklch(0.68 0.19 40);
   --chart-3: oklch(0.55 0.15 150);
   --chart-4: oklch(0.6 0.12 280);
   --chart-5: oklch(0.65 0.14 20);
   
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   
   --sidebar: oklch(0.98 0.01 80);
   --sidebar-foreground: oklch(0.2 0.02 250);
-  --sidebar-primary: oklch(0.5 0.18 240);
+  --sidebar-primary: oklch(0.48 0.2 250);
   --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.96 0.01 80);
   --sidebar-accent-foreground: oklch(0.25 0.02 250);
   --sidebar-border: oklch(0.9 0.01 80);
-  --sidebar-ring: oklch(0.5 0.18 240);
+  --sidebar-ring: oklch(0.48 0.2 250);
 }
 
 .dark {
@@ -125,45 +125,148 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ─── Smooth Scrolling ──────────────────────────────────── */
+html {
+  /* scroll-behavior: smooth; - Handled by Lenis */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight font-bold;
+    text-wrap: balance;
   }
   
   p {
     @apply leading-relaxed;
   }
+
+  /* Selection color */
+  ::selection {
+    background: oklch(0.48 0.2 250 / 0.2);
+    color: oklch(0.15 0.02 250);
+  }
 }
 
-/* Smooth animations */
+/* ─── Premium Utility Classes ───────────────────────────── */
 @layer utilities {
   .transition-smooth {
     @apply transition-all duration-300 ease-out;
   }
-  
-  .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
+
+  /* Glassmorphism */
+  .glass {
+    background: oklch(1 0 0 / 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid oklch(1 0 0 / 0.2);
   }
-  
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .glass-dark {
+    background: oklch(0.15 0.02 250 / 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid oklch(1 0 0 / 0.1);
   }
-  
-  .animate-counter {
-    animation: counter 2s ease-out forwards;
+
+  /* Grain texture overlay */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section padding consistency */
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  /* Curved section divider */
+  .section-divider-top {
+    position: relative;
+  }
+  .section-divider-top::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: inherit;
+    clip-path: ellipse(55% 100% at 50% 100%);
+    z-index: 1;
+  }
+
+  /* Animated gradient background */
+  .gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  /* Subtle pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 oklch(0.48 0.2 250 / 0.2); }
+    50% { box-shadow: 0 0 30px 10px oklch(0.48 0.2 250 / 0.1); }
+  }
+
+  /* Shimmer effect for loading / emphasis */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(1 0 0 / 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 }

@@ -1,142 +1,216 @@
+"use client"
+
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Link from "next/link";
 import Image from "next/image";
-import { Users, Target, Shield, Heart, Award, Globe } from "lucide-react";
+import { Users, Target, Shield } from "lucide-react";
 import { BoardMember } from "@/components/board-member";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FadeIn, StaggerChildren, StaggerItem, TextReveal, DrawLine, ScaleIn, MagneticButton } from "@/components/motion";
 
 export default function AboutPage() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
     <main>
       <Navigation />
 
-      {/* Hero with Image */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      {/* Hero with Parallax */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
+      >
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('/hero.png')`
+            backgroundImage: `url('/hero.png')`,
+            y: bgY,
           }}
         />
-        <div className="relative z-10 text-center text-white pt-20 px-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            About Us
-          </h1>
-          <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
-            Empowering students locally and globally through school-to-school partnerships.
-          </p>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+        <div className="absolute inset-0 grain pointer-events-none" />
+
+        <motion.div
+          className="relative z-10 text-center text-white pt-20 px-6"
+          style={{ opacity: textOpacity }}
+        >
+          <FadeIn>
+            <span className="text-sm font-bold uppercase tracking-widest text-white/60 mb-4 block">
+              Our Story
+            </span>
+          </FadeIn>
+          <TextReveal
+            text="About Us"
+            as="h1"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+          />
+          <FadeIn delay={0.4}>
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+              Empowering students locally and globally through school-to-school partnerships.
+            </p>
+          </FadeIn>
+        </motion.div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="section-padding bg-background">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16">
-            <div>
-              <span className="text-sm font-bold text-primary uppercase tracking-wider mb-2 block">Our Mission</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Expanding Access to Education
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Global Bright Futures Foundation empowers underserved learners by expanding access to scholarships, tutoring, mentorship, and innovative educational programs that foster academic growth, opportunity, and lifelong success—locally and globally.
-              </p>
-            </div>
-            <div>
-              <span className="text-sm font-bold text-primary uppercase tracking-wider mb-2 block">Our Vision</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Education Without Borders
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We envision a world where every learner regardless of income, location, or circumstance has access to meaningful, high-quality education pathways that unlock potential and create lasting opportunity across generations.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 gap-20">
+            <FadeIn direction="left">
+              <div>
+                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">Our Mission</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
+                  Expanding Access to Education
+                </h2>
+                <DrawLine className="w-12 h-0.5 bg-accent mb-6" />
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Global Bright Futures Foundation empowers underserved learners by expanding access to scholarships, tutoring, mentorship, and innovative educational programs that foster academic growth, opportunity, and lifelong success—locally and globally.
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="right" delay={0.15}>
+              <div>
+                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">Our Vision</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
+                  Education Without Borders
+                </h2>
+                <DrawLine className="w-12 h-0.5 bg-accent mb-6" delay={0.15} />
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  We envision a world where every learner regardless of income, location, or circumstance has access to meaningful, high-quality education pathways that unlock potential and create lasting opportunity across generations.
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 md:py-28 bg-muted">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <section className="section-padding bg-secondary/50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Values
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              The principles that guide everything we do.
-            </p>
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Our Values
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+                The principles that guide everything we do.
+              </p>
+            </FadeIn>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-10">
+          <StaggerChildren className="grid md:grid-cols-3 gap-12" staggerDelay={0.12}>
             {[
               { icon: Target, title: "Equity", desc: "Every student deserves access to quality education regardless of their circumstances." },
               { icon: Users, title: "Partnership", desc: "We collaborate with schools and communities for sustainable, impactful solutions." },
               { icon: Shield, title: "Accountability", desc: "Transparent, audit-ready operations with full IRS compliance." },
             ].map((value, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                  <value.icon className="text-primary" size={28} />
-                </div>
-                <h3 className="font-bold text-xl text-foreground mb-2">{value.title}</h3>
-                <p className="text-muted-foreground">{value.desc}</p>
-              </div>
+              <StaggerItem key={idx}>
+                <motion.div
+                  className="text-center group"
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="w-20 h-20 mx-auto mb-6 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300"
+                    whileHover={{ rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <value.icon className="text-primary" size={32} />
+                  </motion.div>
+                  <h3 className="font-bold text-xl text-foreground mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{value.desc}</p>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 
       {/* Leadership */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="section-padding bg-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Leadership
-            </h2>
-            <Link
-              href="/board-of-directors"
-              className="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors"
-            >
-              View Full Board →
-            </Link>
+          <div className="text-center mb-14">
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Our Leadership
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <Link
+                href="/board-of-directors"
+                className="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors"
+              >
+                View Full Board →
+              </Link>
+            </FadeIn>
           </div>
           
           <div className="space-y-8">
-            <BoardMember
-              name="Ilyne Cendy Root"
-              title="Founder & President"
-              shortDescription="Educator, nonprofit leader, and global advocate for educational equity whose work is grounded in lived experience and lifelong commitment to service."
-              fullDescription="Ilyne Cendy Root is an educator, nonprofit leader, and global advocate for educational equity. Orphaned at a young age, she developed resilience and understanding of barriers faced by students without stable guidance. Her journey—from an orphaned child to international educator and nonprofit founder—reflects the mission of Global Bright Futures Foundation Inc."
-              imageSrc="/ilyne.jpg"
-              imageAlt="Ilyne Cendy Root"
-            />
-            <BoardMember
-              name="Joseph Root"
-              title="Vice President"
-              shortDescription="Provides executive leadership and operational oversight. Passionate advocate for youth development through mentorship programs."
-              fullDescription="Joseph Root serves as Vice President, providing executive leadership, operational oversight, and strategic support to advance the Foundation's mission. A passionate advocate for youth development through sports and mentorship programs."
-              imageSrc="/joseph.jpg"
-              imageAlt="Joseph Root"
-            />
+            <FadeIn>
+              <BoardMember
+                name="Ilyne Cendy Root"
+                title="Founder & President"
+                shortDescription="Educator, nonprofit leader, and global advocate for educational equity whose work is grounded in lived experience and lifelong commitment to service."
+                fullDescription="Ilyne Cendy Root is an educator, nonprofit leader, and global advocate for educational equity. Orphaned at a young age, she developed resilience and understanding of barriers faced by students without stable guidance. Her journey—from an orphaned child to international educator and nonprofit founder—reflects the mission of Global Bright Futures Foundation Inc."
+                imageSrc="/ilyne.jpg"
+                imageAlt="Ilyne Cendy Root"
+              />
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <BoardMember
+                name="Joseph Root"
+                title="Vice President"
+                shortDescription="Provides executive leadership and operational oversight. Passionate advocate for youth development through mentorship programs."
+                fullDescription="Joseph Root serves as Vice President, providing executive leadership, operational oversight, and strategic support to advance the Foundation's mission. A passionate advocate for youth development through sports and mentorship programs."
+                imageSrc="/joseph.jpg"
+                imageAlt="Joseph Root"
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Transparency */}
-      <section className="py-20 md:py-28 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Committed to Transparency
-          </h2>
-          <p className="text-lg opacity-90 mb-10 max-w-2xl mx-auto">
-            As a 501(c)(3) nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="bg-primary-foreground text-primary px-8 py-4 rounded-full font-bold hover:bg-primary-foreground/90 transition-colors">
-              Download Form 990
-            </button>
-            <button className="border-2 border-primary-foreground text-primary-foreground px-8 py-4 rounded-full font-bold hover:bg-primary-foreground/10 transition-colors">
-              Annual Report
-            </button>
-          </div>
+      <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full blur-3xl -translate-x-1/2 pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5">
+              Committed to Transparency
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto">
+              As a 501(c)(3) nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <MagneticButton>
+                <button className="bg-primary-foreground text-primary px-8 py-4 rounded-full font-bold hover:bg-primary-foreground/90 transition-all duration-300 shadow-lg">
+                  Download Form 990
+                </button>
+              </MagneticButton>
+              <MagneticButton>
+                <button className="border-2 border-primary-foreground/30 text-primary-foreground px-8 py-4 rounded-full font-bold hover:bg-primary-foreground/10 hover:border-primary-foreground/50 transition-all duration-300">
+                  Annual Report
+                </button>
+              </MagneticButton>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

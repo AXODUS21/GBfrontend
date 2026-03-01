@@ -1,50 +1,132 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { FadeIn, TextReveal, MagneticButton } from "@/components/motion"
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Parallax effects
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150])
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 80])
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95])
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Parallax Background */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/hero.png')`
+          backgroundImage: `url('/hero.png')`,
+          y: bgY,
         }}
       />
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center text-white pt-20">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-up">
-          Bring Education to Every Child
-        </h1>
-        
-        <p className="text-lg md:text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto leading-relaxed">
-          We connect schools worldwide to provide tutoring, mentorship, and educational resources to students who need them most.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/sponsor">
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">
-              Donate Now
-            </Button>
-          </Link>
-          <Link href="/programs">
-            <Button
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 px-10 py-7 text-lg font-medium rounded-full bg-transparent"
-            >
-              Learn More
-            </Button>
-          </Link>
-        </div>
-        
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-white/70 rounded-full animate-bounce" />
-          </div>
-        </div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+
+      {/* Grain texture */}
+      <div className="absolute inset-0 grain pointer-events-none" />
+
+      {/* Floating decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-[10%] w-2 h-2 bg-accent/40 rounded-full"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-[15%] w-3 h-3 bg-primary-foreground/20 rounded-full"
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-[20%] w-1.5 h-1.5 bg-accent/30 rounded-full"
+          animate={{
+            y: [0, -15, 0],
+            opacity: [0.3, 0.7, 0.3],
+          }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div
+          className="absolute top-[60%] right-[25%] w-2 h-2 bg-white/15 rounded-full"
+          animate={{
+            y: [0, -25, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        />
       </div>
+
+      {/* Content */}
+      <motion.div
+        className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center text-white pt-20"
+        style={{ y: textY, opacity, scale }}
+      >
+        {/* Overline badge */}
+        <FadeIn delay={0.2}>
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
+            <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-white/90 tracking-wide">
+              501(c)(3) Nonprofit Organization
+            </span>
+          </div>
+        </FadeIn>
+
+        <TextReveal
+          text="Bring Education to Every Child"
+          as="h1"
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-[1.05] tracking-tight"
+        />
+
+        <FadeIn delay={0.6}>
+          <p className="text-lg md:text-xl lg:text-2xl mb-12 text-white/80 max-w-2xl mx-auto leading-relaxed font-light">
+            We connect schools worldwide to provide tutoring, mentorship, and
+            educational resources to students who need them most.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.8}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <MagneticButton>
+              <Link href="/sponsor">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 hover:-translate-y-1 transition-all duration-300 border border-accent/20">
+                  Donate Now
+                </Button>
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link href="/programs">
+                <Button
+                  variant="outline"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-10 py-7 text-lg font-medium rounded-full bg-white/5 backdrop-blur-sm transition-all duration-300"
+                >
+                  Learn More
+                </Button>
+              </Link>
+            </MagneticButton>
+          </div>
+        </FadeIn>
+
+
+      </motion.div>
     </section>
   )
 }
