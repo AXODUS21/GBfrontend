@@ -193,9 +193,28 @@ export default function AboutPage() {
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto text-center">
               As a 501(c)(3) nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
             </p>
+          </FadeIn>
+          
+          <FadeIn delay={0.15}>
+            <div className="flex justify-center mb-10">
+              <motion.a
+                href="https://app.candid.org/profile/16509371/global-bright-futures-foundation-inc-41-2810962/?pkId=0b067e55-2a04-462c-8f3f-fc2e3d05c211"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-48 bg-white/10 rounded-2xl p-4 hover:bg-white/20 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <img 
+                  src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16509371/svg" 
+                  alt="Candid/GuideStar Transparency Seal"
+                  className="w-full h-auto"
+                />
+              </motion.a>
+            </div>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap gap-4 justify-center">

@@ -66,6 +66,22 @@ export default function Footer() {
                 >
                   <Facebook size={18} />
                 </motion.a>
+                
+                {/* Transparency Seal */}
+                <motion.a
+                  href="https://app.candid.org/profile/16509371/global-bright-futures-foundation-inc-41-2810962/?pkId=0b067e55-2a04-462c-8f3f-fc2e3d05c211"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-[100px] opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <img 
+                    src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16509371/svg" 
+                    alt="Candid/GuideStar Transparency Seal"
+                    className="w-full h-auto"
+                  />
+                </motion.a>
               </div>
             </StaggerItem>
 
