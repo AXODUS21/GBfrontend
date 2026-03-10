@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { FadeIn, TextReveal, MagneticButton } from "@/components/motion"
@@ -26,12 +27,18 @@ export default function HeroSection() {
     >
       {/* Parallax Background */}
       <motion.div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-        style={{
-          backgroundImage: `url('/hero.png')`,
-          y: bgY,
-        }}
-      />
+        className="absolute inset-0 scale-110"
+        style={{ y: bgY }}
+      >
+        <Image
+          src="/hero.png"
+          alt="Global Bright Futures Foundation Hero"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </motion.div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
@@ -85,13 +92,13 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span className="text-sm font-medium text-white/90 tracking-wide">
-              501(c)(3) Nonprofit Organization
+              Official 501(c)(3) Nonprofit Advocacy
             </span>
           </div>
         </FadeIn>
 
         <TextReveal
-          text="Bring Education to Every Child"
+          text="Empowering Global Education with a 3-Way Impact Model"
           as="h1"
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-[1.05] tracking-tight"
         />

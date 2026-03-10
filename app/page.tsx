@@ -1,9 +1,11 @@
 import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
 import ImpactSection from "@/components/impact-section"
+import LatestImpact from "@/components/latest-impact"
 import FounderMessage from "@/components/founder-message"
 import ProgramFeature from "@/components/program-feature"
 import VoucherSystem from "@/components/voucher-system"
+import Newsletter from "@/components/newsletter"
 import Footer from "@/components/footer"
 
 export default function HomePage() {
@@ -12,9 +14,11 @@ export default function HomePage() {
       <Navigation />
       <HeroSection />
       <ImpactSection />
+      <LatestImpact />
       <FounderMessage />
       <ProgramFeature />
       <VoucherSystem />
+      <Newsletter />
       <Footer />
     </main>
   )

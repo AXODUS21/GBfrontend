@@ -163,7 +163,7 @@ export default function Footer() {
                 <Link href="/policies/terms_and_conditions" className="hover:text-background transition-colors duration-300">
                   Terms
                 </Link>
-                <Link href="/policies/code_of_ethics" className="hover:text-background transition-colors duration-300">
+                <Link href="/policies/privacy" className="hover:text-background transition-colors duration-300">
                   Privacy
                 </Link>
                 <a
