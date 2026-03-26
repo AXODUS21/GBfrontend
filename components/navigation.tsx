@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Programs", href: "/programs" },
   { label: "Sponsor", href: "/sponsor" },
   { label: "Join Us", href: "/contact" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navigation() {
