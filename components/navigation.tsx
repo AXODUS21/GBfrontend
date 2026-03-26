@@ -107,7 +107,7 @@ export default function Navigation() {
                 className="ml-4"
               >
                 <Link
-                  href="/sponsor"
+                  href="https://www.zeffy.com/en-US/embed/your-form-id"
                   className="bg-accent text-accent-foreground px-7 py-3 rounded-full text-sm font-bold hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 inline-block"
                 >
                   Donate Now
