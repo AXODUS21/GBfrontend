@@ -194,7 +194,7 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto text-center">
-              As a 501(c)(3) nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
+              As a 501 nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
             </p>
           </FadeIn>
           

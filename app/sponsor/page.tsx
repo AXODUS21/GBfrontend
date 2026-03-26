@@ -226,7 +226,7 @@ export default function SponsorPage() {
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
             <p className="text-muted-foreground">
-              <strong className="text-foreground">Global Bright Futures Foundation Inc.</strong> is a 501(c)(3) nonprofit organization. All donations are tax-deductible to the full extent permitted by law.
+              <strong className="text-foreground">Global Bright Futures Foundation Inc.</strong> is a 501 nonprofit organization. All donations are tax-deductible to the full extent permitted by law.
             </p>
           </FadeIn>
         </div>

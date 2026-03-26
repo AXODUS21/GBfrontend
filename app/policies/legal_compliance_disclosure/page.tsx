@@ -54,7 +54,7 @@ export default function LegalComplianceDisclosurePage() {
             <CardContent>
               <p className="text-foreground/80 leading-relaxed">
                 Global Bright Futures Foundation, Inc. is a U.S.-based nonprofit public charity recognized as tax-exempt under 
-                Section 501(c)(3) of the Internal Revenue Code. Contributions are tax-deductible to the extent permitted by law.
+                Section 501 of the Internal Revenue Code. Contributions are tax-deductible to the extent permitted by law.
               </p>
             </CardContent>
           </Card>

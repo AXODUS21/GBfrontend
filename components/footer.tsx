@@ -157,7 +157,7 @@ export default function Footer() {
           <FadeIn>
             <div className="border-t border-background/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-xs text-background/40">
-                © 2025 Global Bright Futures Foundation, Inc. | 501(c)(3) Nonprofit | EIN: [EIN Number]
+                © 2025 Global Bright Futures Foundation, Inc. | 501 Nonprofit | EIN: [EIN Number]
               </p>
               <div className="flex gap-6 text-xs text-background/40">
                 <Link href="/policies/terms_and_conditions" className="hover:text-background transition-colors duration-300">

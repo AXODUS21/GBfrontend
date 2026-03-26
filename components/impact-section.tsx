@@ -4,7 +4,7 @@ import { FadeIn, StaggerChildren, StaggerItem, CountUp, DrawLine } from "@/compo
 
 const stats = [
   { value: 2, suffix: "x", label: "Impact Per Donation", description: "Every voucher helps students in the US and abroad" },
-  { value: 100, suffix: "%", label: "Tax Deductible", description: "501(c)(3) nonprofit organization" },
+  { value: 100, suffix: "%", label: "Tax Deductible", description: "501 nonprofit organization" },
   { value: 10, suffix: "+", label: "Hours of Tutoring", description: "Per $200 voucher allocated" },
 ]
 

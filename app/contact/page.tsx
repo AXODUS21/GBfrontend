@@ -370,7 +370,7 @@ export default function ContactPage() {
                 <div className="space-y-8">
                   {[
                     { q: "How long does school grant approval take?", a: "Typically 2-3 weeks from complete application submission." },
-                    { q: "Can I donate and get a tax deduction?", a: "Yes! We're a 501(c)(3) nonprofit. All donations are tax-deductible." },
+                    { q: "Can I donate and get a tax deduction?", a: "Yes! We're a 501 nonprofit. All donations are tax-deductible." },
                     { q: "What countries do you operate in?", a: "We currently operate in the US and Philippines, with expansion planned." },
                     { q: "How are students selected?", a: "Schools independently select students based on need and eligibility criteria to ensure compliance." },
                   ].map((faq, idx) => (

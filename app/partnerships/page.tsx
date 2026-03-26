@@ -216,7 +216,7 @@ export default function PartnershipPage() {
                   <div>
                     <p className="font-semibold text-foreground mb-1">No Private Benefit</p>
                     <p className="text-sm text-foreground/70">
-                      Resources benefit schools and students, maintaining 501(c)(3) integrity.
+                      Resources benefit schools and students, maintaining 501 integrity.
                     </p>
                   </div>
                 </div>
