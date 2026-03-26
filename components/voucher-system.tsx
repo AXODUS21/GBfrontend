@@ -118,7 +118,7 @@ export default function VoucherSystem() {
         {/* CTA */}
         <FadeIn delay={0.2} className="text-center mt-14">
           <MagneticButton>
-            <Link href="/apply">
+            <Link href="https://app.globalbrightfutures.org">
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 transition-all duration-300">
                 Apply for a Voucher
               </Button>
