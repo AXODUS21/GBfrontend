@@ -67,6 +67,7 @@ export default function JoinPage() {
 
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
     
     let targetEmail = "info@globalbrightfutures.org"
     if (formData.category === "School Partnership") {
@@ -85,8 +86,11 @@ export default function JoinPage() {
     
     toast.success("Opening your email client...")
     
-    // Optional: reset form
-    setFormData({ category: "", reason: "", email: "" })
+    // Simulate a brief delay to show the feedback state
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setFormData({ category: "", reason: "", email: "" })
+    }, 1500)
   }
 
   return (
