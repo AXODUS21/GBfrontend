@@ -12,8 +12,8 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://globalbrightfutures.org'
 
 export const metadata: Metadata = {
-  title: "Global Bright Futures Foundation | School-to-School Partnerships",
-  description: "Empowering students locally and globally through school-to-school learning partnerships",
+  title: "Global Bright Futures Foundation | Join & Get Support",
+  description: "Join our mission or get educational support for your school, organization, or community.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Global Bright Futures Foundation | School-to-School Partnerships",
-    description: "Empowering students locally and globally through school-to-school learning partnerships",
+    title: "Global Bright Futures Foundation | Join & Get Support",
+    description: "Join our mission or get educational support for your school, organization, or community.",
     url: baseUrl,
     siteName: "Global Bright Futures Foundation",
     images: [
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Global Bright Futures Foundation | School-to-School Partnerships",
-    description: "Empowering students locally and globally through school-to-school learning partnerships",
+    title: "Global Bright Futures Foundation | Join & Get Support",
+    description: "Join our mission or get educational support for your school, organization, or community.",
     images: [`${baseUrl}/preview.png`],
   },
 }

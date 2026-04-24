@@ -9,10 +9,10 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { FadeIn, StaggerChildren, StaggerItem, MagneticButton } from "@/components/motion"
 
 const features = [
-  "Tutoring & academic support",
-  "Mentorship programs",
-  "Educational materials",
-  "STEM enrichment",
+  "Youth & Student Opportunity",
+  "Academic Support & Well-Being",
+  "Workforce & Financial Pathways",
+  "Community Growth & Resilience",
 ]
 
 export default function ProgramFeature() {
@@ -35,23 +35,21 @@ export default function ProgramFeature() {
           <div className="order-2 md:order-1">
             <FadeIn>
               <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">
-                How It Works
+                What We Do
               </span>
             </FadeIn>
             
             <FadeIn delay={0.1}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-tight">
-                One Gift.
+                One program.
                 <br />
-                <span className="text-gradient">Two Schools.</span>
-                <br />
-                Lasting Impact.
+                <span className="text-gradient">Shared impact.</span>
               </h2>
             </FadeIn>
             
             <FadeIn delay={0.2}>
               <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-                Our unique model pairs U.S. schools with partner schools abroad. Every voucher supports students on both sides—doubling the impact of every donation.
+                Every day, we create pathways for learning, opportunity, and long-term community impact.
               </p>
             </FadeIn>
             

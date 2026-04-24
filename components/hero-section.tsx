@@ -102,20 +102,12 @@ export default function HeroSection() {
           as="h1"
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-[1.05] tracking-tight"
         />
-
-        <FadeIn delay={0.6}>
-          <p className="text-lg md:text-xl lg:text-2xl mb-12 text-white/80 max-w-2xl mx-auto leading-relaxed font-light">
-            We connect schools worldwide to provide tutoring, mentorship, and
-            educational resources to students who need them most.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.8}>
+        <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <MagneticButton>
               <Link href="/sponsor">
                 <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 hover:-translate-y-1 transition-all duration-300 border border-accent/20">
-                  Donate Now
+                  Donate Now and Apply for Support
                 </Button>
               </Link>
             </MagneticButton>

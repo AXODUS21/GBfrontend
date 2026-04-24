@@ -189,12 +189,12 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
-              Committed to Transparency
+              Accountability & Transparency
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto text-center">
-              As a 501(c)(3) nonprofit, we maintain full transparency and accountability. Access our financial reports anytime.
+              We maintain clear, structured oversight to ensure funds are used responsibly and program services are delivered as intended.
             </p>
           </FadeIn>
           

@@ -3,15 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { 
+    label: "Organization", 
+    children: [
+      { label: "About", href: "/about" },
+      { label: "Leadership", href: "/board-of-directors" },
+    ]
+  },
+  { label: "Join & Get Support", href: "/join" },
   { label: "Programs", href: "/programs" },
   { label: "Sponsor", href: "/sponsor" },
-  { label: "Join Us", href: "/contact" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -19,6 +25,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -85,21 +92,63 @@ export default function Navigation() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((item, idx) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * idx + 0.3, duration: 0.4 }}
+                <div 
+                  key={item.label} 
+                  className="relative group"
+                  onMouseEnter={() => item.children && setActiveDropdown(item.label)}
+                  onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <Link
-                    href={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-white/10 ${
-                      scrolled ? "text-foreground hover:bg-foreground/5" : "text-white"
-                    }`}
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * idx + 0.3, duration: 0.4 }}
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-white/10 ${
+                          scrolled ? "text-foreground hover:bg-foreground/5" : "text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <button
+                        className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full flex items-center gap-1 hover:bg-white/10 ${
+                          scrolled ? "text-foreground hover:bg-foreground/5" : "text-white"
+                        }`}
+                      >
+                        {item.label}
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+                  </motion.div>
+
+                  {/* Dropdown Menu */}
+                  {item.children && (
+                    <AnimatePresence>
+                      {activeDropdown === item.label && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-0 mt-2 w-48 bg-background/80 backdrop-blur-lg border border-border shadow-xl rounded-2xl overflow-hidden py-2"
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className="block px-5 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               ))}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -176,7 +225,7 @@ export default function Navigation() {
             />
 
             {/* Menu Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8">
+            <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 pt-20 overflow-y-auto">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -187,7 +236,7 @@ export default function Navigation() {
                     transition: { staggerChildren: 0.08, delayChildren: 0.1 },
                   },
                 }}
-                className="space-y-2 w-full max-w-sm text-center"
+                className="space-y-1 w-full max-w-sm text-center"
               >
                 {navLinks.map((item) => (
                   <motion.div
@@ -201,13 +250,31 @@ export default function Navigation() {
                       },
                     }}
                   >
-                    <Link
-                      href={item.href}
-                      className="block text-white text-3xl font-bold py-4 hover:text-white/70 transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="block text-white text-3xl font-bold py-3 hover:text-white/70 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <div className="py-2">
+                        <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">{item.label}</p>
+                        <div className="space-y-2">
+                          {item.children?.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className="block text-white text-2xl font-semibold py-2 hover:text-white/70 transition-colors"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 ))}
                 <motion.div
@@ -219,7 +286,7 @@ export default function Navigation() {
                       transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
                     },
                   }}
-                  className="pt-6"
+                  className="pt-6 pb-12"
                 >
                   <Link
                     href="/sponsor"
@@ -237,3 +304,4 @@ export default function Navigation() {
     </>
   );
 }
+

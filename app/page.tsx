@@ -14,10 +14,10 @@ export default function HomePage() {
       <Navigation />
       <HeroSection />
       <ImpactSection />
-      <LatestImpact />
       <FounderMessage />
       <ProgramFeature />
       <VoucherSystem />
+      <LatestImpact />
       <Newsletter />
       <Footer />
     </main>

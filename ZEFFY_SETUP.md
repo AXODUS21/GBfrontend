@@ -20,7 +20,7 @@ This guide will walk you through setting up Zeffy for accepting donations on you
    - Organization name: **Global Bright Futures Foundation Inc.**
    - Organization type: **Nonprofit/501(c)(3)**
    - Address: **5830 E 2ND ST, STE 7000 #30800, CASPER, WY 82609**
-   - Email: **admin@globalbrightfutures.org**
+   - Email: **info@globalbrightfutures.org**
    - Phone: **661 488 9935**
 4. Complete the registration process
 

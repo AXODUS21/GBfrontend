@@ -6,6 +6,7 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Mail, Phone, MapPin, Facebook } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
@@ -13,45 +14,36 @@ import { motion } from "framer-motion"
 import { FadeIn, TextReveal, StaggerChildren, StaggerItem } from "@/components/motion"
 
 export default function ContactPage() {
-  const [donationFormData, setDonationFormData] = useState({
-    name: "",
+  const [formData, setFormData] = useState({
+    category: "",
+    reason: "",
     email: "",
-    phone: "",
-    message: "",
   })
 
-  const [partnershipFormData, setPartnershipFormData] = useState({
-    name: "",
-    email: "",
-    schoolName: "",
-    phone: "",
-    message: "",
-  })
-
-  const [activeTab, setActiveTab] = useState<"donation" | "partnership">("donation")
-
-  const handleDonationChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleFormChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target
-    setDonationFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handlePartnershipChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setPartnershipFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleDonationSubmit = (e: React.FormEvent) => {
+  const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Donation inquiry submitted:", donationFormData)
-    setDonationFormData({ name: "", email: "", phone: "", message: "" })
-    alert("Thank you for your donation inquiry! We'll get back to you soon.")
-  }
-
-  const handlePartnershipSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Partnership inquiry submitted:", partnershipFormData)
-    setPartnershipFormData({ name: "", email: "", schoolName: "", phone: "", message: "" })
-    alert("Thank you for your partnership inquiry! We'll get back to you soon.")
+    
+    let targetEmail = "info@globalbrightfutures.org"
+    if (formData.category === "School Partnership") {
+      targetEmail = "partnership@globalbrightfutures.org"
+    } else if (formData.category === "Join as Educators and Tutors") {
+      targetEmail = "educators@globalbrightfutures.org"
+    } else if (formData.category === "Students & Families Support") {
+      targetEmail = "families@globalbrightfutures.org"
+    }
+    
+    const subject = encodeURIComponent(`Application: ${formData.category}`)
+    const bodyText = `Applicant Email: ${formData.email}\n\nCategory: ${formData.category}\n\nReason for applying:\n${formData.reason}`
+    const body = encodeURIComponent(bodyText)
+    
+    window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`
+    
+    setFormData({ category: "", reason: "", email: "" })
   }
 
   return (
@@ -92,8 +84,8 @@ export default function ContactPage() {
                 title: "Email",
                 content: (
                   <>
-                    <a href="mailto:admin@globalbrightfutures.org" className="text-primary hover:underline text-foreground/60">
-                      admin@globalbrightfutures.org
+                    <a href="mailto:info@globalbrightfutures.org" className="text-primary hover:underline text-foreground/60">
+                      info@globalbrightfutures.org
                     </a>
                     <p className="text-foreground/50 text-sm mt-2">We respond within 24 hours</p>
                   </>
@@ -169,223 +161,149 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-3xl font-bold text-foreground mb-8">Inquiry Forms</h2>
                 
-                {/* Tab Navigation */}
-                <div className="flex gap-1 mb-8 bg-secondary/50 rounded-full p-1 inline-flex">
-                  {[
-                    { key: "donation" as const, label: "Donation Inquiries" },
-                    { key: "partnership" as const, label: "School Partnership" },
-                  ].map((tab) => (
-                    <button
-                      key={tab.key}
-                      onClick={() => setActiveTab(tab.key)}
-                      className={`px-5 py-2.5 font-medium text-sm rounded-full transition-all duration-300 ${
-                        activeTab === tab.key
-                          ? "bg-primary text-primary-foreground shadow-md"
-                          : "text-foreground/60 hover:text-foreground"
-                      }`}
+                {/* Inquiry Form */}
+                <motion.form
+                  onSubmit={handleApplySubmit}
+                  className="space-y-5"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div>
+                    <label htmlFor="email" className="block font-semibold text-foreground mb-2 text-sm">
+                      Your Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      required
+                      placeholder="your@email.com"
+                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="category" className="block font-semibold text-foreground mb-2 text-sm">
+                      I am interested in:
+                    </label>
+                    <select 
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleFormChange}
+                      required
+                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
                     >
-                      {tab.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Donation Inquiry Form */}
-                {activeTab === "donation" && (
-                  <motion.form
-                    onSubmit={handleDonationSubmit}
-                    className="space-y-5"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+                      <option value="" disabled>Select an option</option>
+                      <option value="Students & Families Support">Students & Families Support</option>
+                      <option value="Join as Educators and Tutors">Join as Educators and Tutors</option>
+                      <option value="School Partnership">School Partnership</option>
+                      <option value="Support the Program">Support the Program</option>
+                      <option value="Request More Information">Request More Information</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="reason" className="block font-semibold text-foreground mb-2 text-sm">
+                      Reason for applying:
+                    </label>
+                    <textarea
+                      id="reason"
+                      name="reason"
+                      value={formData.reason}
+                      onChange={handleFormChange}
+                      required
+                      rows={5}
+                      placeholder="Tell us why you are applying..."
+                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
+                    ></textarea>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    <div>
-                      <label htmlFor="donation-name" className="block font-semibold text-foreground mb-2 text-sm">
-                        Full Name
-                      </label>
-                      <input
-                        id="donation-name"
-                        name="name"
-                        type="text"
-                        value={donationFormData.name}
-                        onChange={handleDonationChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="Your name"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="donation-email" className="block font-semibold text-foreground mb-2 text-sm">
-                        Email Address
-                      </label>
-                      <input
-                        id="donation-email"
-                        name="email"
-                        type="email"
-                        value={donationFormData.email}
-                        onChange={handleDonationChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="donation-phone" className="block font-semibold text-foreground mb-2 text-sm">
-                        Phone Number (Optional)
-                      </label>
-                      <input
-                        id="donation-phone"
-                        name="phone"
-                        type="tel"
-                        value={donationFormData.phone}
-                        onChange={handleDonationChange}
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="(661) 488-9935"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="donation-message" className="block font-semibold text-foreground mb-2 text-sm">
-                        Message
-                      </label>
-                      <textarea
-                        id="donation-message"
-                        name="message"
-                        value={donationFormData.message}
-                        onChange={handleDonationChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 resize-none"
-                        placeholder="Tell us about your donation inquiry..."
-                      />
-                    </div>
-
-                    <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300">
-                      Submit Donation Inquiry
-                    </Button>
-                  </motion.form>
-                )}
-
-                {/* Partnership Inquiry Form */}
-                {activeTab === "partnership" && (
-                  <motion.form
-                    onSubmit={handlePartnershipSubmit}
-                    className="space-y-5"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div>
-                      <label htmlFor="partnership-name" className="block font-semibold text-foreground mb-2 text-sm">
-                        Full Name
-                      </label>
-                      <input
-                        id="partnership-name"
-                        name="name"
-                        type="text"
-                        value={partnershipFormData.name}
-                        onChange={handlePartnershipChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="Your name"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="partnership-email" className="block font-semibold text-foreground mb-2 text-sm">
-                        Email Address
-                      </label>
-                      <input
-                        id="partnership-email"
-                        name="email"
-                        type="email"
-                        value={partnershipFormData.email}
-                        onChange={handlePartnershipChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="partnership-school" className="block font-semibold text-foreground mb-2 text-sm">
-                        School/Company Name
-                      </label>
-                      <input
-                        id="partnership-school"
-                        name="schoolName"
-                        type="text"
-                        value={partnershipFormData.schoolName}
-                        onChange={handlePartnershipChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="Your school name"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="partnership-phone" className="block font-semibold text-foreground mb-2 text-sm">
-                        Phone Number
-                      </label>
-                      <input
-                        id="partnership-phone"
-                        name="phone"
-                        type="tel"
-                        value={partnershipFormData.phone}
-                        onChange={handlePartnershipChange}
-                        required
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                        placeholder="(661) 488-9935"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="partnership-message" className="block font-semibold text-foreground mb-2 text-sm">
-                        Message
-                      </label>
-                      <textarea
-                        id="partnership-message"
-                        name="message"
-                        value={partnershipFormData.message}
-                        onChange={handlePartnershipChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 resize-none"
-                        placeholder="Tell us about your school and partnership interest..."
-                      />
-                    </div>
-
-                    <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300">
-                      Submit Partnership Inquiry
-                    </Button>
-                  </motion.form>
-                )}
+                    Apply Now
+                  </Button>
+                </motion.form>
               </div>
             </FadeIn>
 
             <FadeIn direction="right" delay={0.15}>
               <div className="bg-secondary/30 rounded-3xl p-8 border border-border/30">
                 <h3 className="text-2xl font-bold text-foreground mb-8">Frequently Asked Questions</h3>
-                <div className="space-y-8">
+                <Accordion type="single" collapsible className="w-full space-y-4">
                   {[
-                    { q: "How long does school grant approval take?", a: "Typically 2-3 weeks from complete application submission." },
-                    { q: "Can I donate and get a tax deduction?", a: "Yes! We're a 501(c)(3) nonprofit. All donations are tax-deductible." },
-                    { q: "What countries do you operate in?", a: "We currently operate in the US and Philippines, with expansion planned." },
-                    { q: "How are students selected?", a: "Schools independently select students based on need and eligibility criteria to ensure compliance." },
-                  ].map((faq, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1, duration: 0.4 }}
-                    >
-                      <h4 className="font-bold text-foreground mb-2">{faq.q}</h4>
-                      <p className="text-foreground/60 leading-relaxed">{faq.a}</p>
-                    </motion.div>
+                    { 
+                      id: "faq-1",
+                      q: "What are Education Support Voucher Credits?", 
+                      a: (
+                        <div className="space-y-2">
+                          <p>Global Bright Futures Foundation Inc. provides Tutoring Service Credits (Voucher Credits), a nonprofit-supported funding mechanism designed to help schools expand access to academic support services at reduced cost.</p>
+                          <p>These credits: Are applied directly to approved tutoring services, delivered through approved vendors, used for tutoring, enrichment, and intervention programs, and are not redeemable as cash or transferable funds.</p>
+                          <p>Schools may use these credits to expand: Academic tutoring, Intervention support, Enrichment programs, Summer and after-school learning.</p>
+                        </div>
+                      )
+                    },
+                    { 
+                      id: "faq-2",
+                      q: "How do schools use Voucher Credits?", 
+                      a: (
+                        <div className="space-y-2">
+                          <p>Voucher Credits are applied directly toward instructional services provided through our approved education partner, Smart Brain TLC Inc. or other approved vendor.</p>
+                          <p>Schools determine student eligibility and program participation, while Global Bright Futures Foundation Inc. supports cost reduction, coordination, and program expansion through nonprofit funding mechanisms.</p>
+                        </div>
+                      )
+                    },
+                    { 
+                      id: "faq-3",
+                      q: "Are Voucher Credits free or do schools pay for them?", 
+                      a: (
+                        <div className="space-y-2">
+                          <p>Global Bright Futures Foundation Inc. offers Tutoring Service Credits (Voucher Credits) in two formats:</p>
+                          <p><strong>Fully Funded (Grant-Supported Credits)</strong><br/>Some Voucher Credits are fully funded through nonprofit or grant support. These are provided at no cost to schools and are used to expand tutoring, intervention, enrichment, and learning support services.</p>
+                          <p><strong>Cost-Shared (Subsidized Model)</strong><br/>Some Voucher Credits are partially subsidized. In this model, Global Bright Futures Foundation Inc. reduces the overall service cost through nonprofit support, while the school contributes a portion of the funding.</p>
+                          <p>This model allows schools to: Expand services within existing budgets, Serve more students, Access higher levels of tutoring support at reduced rates.</p>
+                        </div>
+                      )
+                    },
+                    { 
+                      id: "faq-4",
+                      q: "How Voucher Credits Are Used?", 
+                      a: (
+                        <div className="space-y-2">
+                          <p>All Voucher Credits: Are applied directly to approved tutoring or educational services, delivered through Smart Brain TLC Inc., used for tutoring, enrichment, and intervention programs, and are not redeemable as cash or transferable funds.</p>
+                          <p>Schools use credits for: Academic tutoring, Intervention support, Enrichment programs, Summer and after-school learning.</p>
+                        </div>
+                      )
+                    },
+                    { 
+                      id: "faq-5",
+                      q: "Why are there different types of Voucher Credits?", 
+                      a: (
+                        <div className="space-y-2">
+                          <p>Different credit types allow schools to: Access fully funded support when grant funding is available, Use cost-shared options when expanding beyond available funding, Scale services gradually and sustainably based on student need.</p>
+                        </div>
+                      )
+                    },
+                    { 
+                      id: "faq-6",
+                      q: "Do you support global programs?", 
+                      a: <p>Yes. For every U.S. school supported, we extend services to a partner school in an under-resourced community.</p>
+                    },
+                  ].map((faq) => (
+                    <AccordionItem key={faq.id} value={faq.id} className="bg-background border border-border/50 rounded-2xl px-6 shadow-sm">
+                      <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="text-foreground/60 leading-relaxed text-sm pt-2">
+                          {faq.a}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
                   ))}
-                </div>
+                </Accordion>
               </div>
             </FadeIn>
           </div>

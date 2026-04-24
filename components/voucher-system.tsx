@@ -49,12 +49,12 @@ export default function VoucherSystem() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
-              100% Transparent
+              Accountability & Transparency
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-              We track every dollar. You can see exactly where your donation goes.
+              We maintain clear, structured oversight to ensure funds are used responsibly and program services are delivered as intended.
             </p>
           </FadeIn>
         </div>
@@ -109,8 +109,8 @@ export default function VoucherSystem() {
                 </motion.div>
               ))}
             </div>
-            <p className="text-base text-primary-foreground/80 max-w-xl mx-auto leading-relaxed font-medium">
-              Each $200 provides approximately 10 hours of tutoring. Schools maintain independent records for full IRS compliance.
+            <p className="text-base text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
+              Our model uses service-based funding (no cash), applies funds directly to approved services delivered by vetted providers, and tracks outcomes through aggregate reporting with ongoing monitoring for accountability.
             </p>
           </div>
         </ScaleIn>
@@ -118,9 +118,9 @@ export default function VoucherSystem() {
         {/* CTA */}
         <FadeIn delay={0.2} className="text-center mt-14">
           <MagneticButton>
-            <Link href="/apply">
+            <Link href="https://app.globalbrightfutures.org/">
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 transition-all duration-300">
-                Apply for a Voucher
+                Apply for Education Support Voucher
               </Button>
             </Link>
           </MagneticButton>

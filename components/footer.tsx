@@ -93,7 +93,7 @@ export default function Footer() {
                   { label: "School Vouchers", href: "/programs" },
                   { label: "Tutoring & Mentorship", href: "/programs" },
                   { label: "Student Fellowship", href: "/programs" },
-                  { label: "Apply for Support", href: "/apply" },
+                  { label: "Apply for Support", href: "https://app.globalbrightfutures.org/" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link
@@ -114,7 +114,7 @@ export default function Footer() {
                 {[
                   { label: "About Us", href: "/about" },
                   { label: "Leadership", href: "/board-of-directors" },
-                  { label: "Partners", href: "/partnerships" },
+                  { label: "Join & Get Support", href: "/join" },
                   { label: "Contact", href: "/contact" },
                 ].map((item) => (
                   <li key={item.label}>
@@ -137,7 +137,7 @@ export default function Footer() {
                   <div className="w-8 h-8 bg-background/10 rounded-full flex items-center justify-center flex-shrink-0">
                     <Mail size={14} />
                   </div>
-                  <span>admin@globalbrightfutures.org</span>
+                  <span>info@globalbrightfutures.org</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-8 h-8 bg-background/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -157,7 +157,7 @@ export default function Footer() {
           <FadeIn>
             <div className="border-t border-background/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-xs text-background/40">
-                © 2025 Global Bright Futures Foundation, Inc. | 501(c)(3) Nonprofit | EIN: [EIN Number]
+                © 2025 Global Bright Futures Foundation, Inc. | 501(c)(3) Nonprofit | EIN: 41-2810962
               </p>
               <div className="flex gap-6 text-xs text-background/40">
                 <Link href="/policies/terms_and_conditions" className="hover:text-background transition-colors duration-300">

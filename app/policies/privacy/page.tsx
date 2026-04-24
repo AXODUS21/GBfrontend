@@ -105,7 +105,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-foreground/80 leading-relaxed">
                 If you have any questions about this Privacy Policy, please contact us at:
                 <br />
-                <strong>Email:</strong> admin@globalbrightfutures.org
+                <strong>Email:</strong> info@globalbrightfutures.org
                 <br />
                 <strong>Address:</strong> 5830 E 2ND ST, STE 7000 #30800, CASPER, WY 82609
               </p>
