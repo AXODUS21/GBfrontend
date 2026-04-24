@@ -62,7 +62,7 @@ In his role, Joseph supports organizational planning, compliance, partner relati
               fullDescription="Reyshyl Durban is a dedicated servant leader and educator with a strong commitment to community development, youth mentorship, and values-based education.
 
 Reyshyl contributes insight grounded in leadership, education management, and community-based service, supporting programs that promote equitable access to education and sustainable community impact."
-              imageSrc="/placeholder.jpg"
+              imageSrc="/reyshyl.jpg"
               imageAlt="Portrait of Reyshyl Durban"
             />
 
