@@ -92,7 +92,7 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span className="text-sm font-medium text-white/90 tracking-wide">
-              Official 501(c)(3) Nonprofit Advocacy
+              Official 501 Nonprofit Advocacy
             </span>
           </div>
         </FadeIn>

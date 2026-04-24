@@ -165,7 +165,7 @@ export default function ZeffyDonation({
             All donations are tax-deductible to the extent allowed by law.
           </p>
           <p className="text-xs text-foreground/70">
-            Global Bright Futures Foundation Inc. is a 501(c)(3) nonprofit organization.
+            Global Bright Futures Foundation Inc. is a 501 nonprofit organization.
           </p>
         </div>
       </CardContent>
