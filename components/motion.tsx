@@ -322,7 +322,7 @@ function SpringNumber({ spring }: { spring: ReturnType<typeof useSpring> }) {
   // Subscribe to spring changes
   spring.on("change", (v) => {
     if (ref.current) {
-      ref.current.textContent = Math.round(v).toString()
+      ref.current.textContent = Math.round(v).toLocaleString()
     }
   })
 

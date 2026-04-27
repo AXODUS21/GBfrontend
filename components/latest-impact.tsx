@@ -1,95 +1,92 @@
 "use client"
 
-import { FadeIn, StaggerChildren, StaggerItem, ScaleIn } from "@/components/motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Calendar, MapPin, ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { FadeIn } from "@/components/motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import { Carousel } from "@ark-ui/react/carousel"
 
-const impactStories = [
-  {
-    title: "New Partnership in Manila",
-    date: "February 20, 2026",
-    location: "Manila, Philippines",
-    description: "Expanded our 'Support One, Empower Two' program to three new elementary schools, reaching 150+ additional students.",
-    image: "/partner-1.jpg",
-  },
-  {
-    title: "STEM Kits for Wyoming Schools",
-    date: "January 15, 2026",
-    location: "Casper, WY",
-    description: "Distributed 50 comprehensive STEM learning kits to rural schools in Wyoming to support hands-on science education.",
-    image: "/partner-2.jpg",
-  },
-  {
-    title: "Fellowship Program Milestone",
-    date: "December 10, 2025",
-    location: "Global",
-    description: "Our Student Fellowship Program has now officially matched 200 college mentors with 500 younger learners.",
-    image: "/partner-3.jpg",
-  },
+const sliderImages = [
+  "/c1.png",
+  "/c2.png",
+  "/c3.png",
+  "/c4.png",
+  "/c5.png",
+  "/c6.png",
+  "/c7.png",
+  "/c8.png",
+  "/c9.png"
 ]
 
 export default function LatestImpact() {
   return (
     <section className="section-padding bg-secondary/20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="max-w-2xl">
-            <FadeIn>
-              <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">
-                Up-to-Date Impact
-              </span>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-                Our Latest Milestones
-              </h2>
-            </FadeIn>
-          </div>
-          <FadeIn delay={0.2}>
-            <Link href="/programs" className="group flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all duration-300 mb-2">
-              View All Programs <ArrowRight size={20} />
-            </Link>
+        <div className="text-center mb-16">
+          <FadeIn>
+            <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">
+              Up-to-Date Impact
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+              Program Reach & Field Impact
+            </h2>
           </FadeIn>
         </div>
 
-        <StaggerChildren className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
-          {impactStories.map((story, idx) => (
-            <StaggerItem key={idx}>
-              <Card className="overflow-hidden border-border/50 hover:shadow-2xl transition-all duration-500 group h-full bg-background">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                  <Image
-                    src={story.image}
-                    alt={story.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} /> {story.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin size={12} /> {story.location}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {story.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    {story.description}
-                  </p>
-                  <Link href="/about" className="text-sm font-bold border-b-2 border-primary/20 hover:border-primary transition-all pb-1">
-                    Read Full Story
-                  </Link>
-                </CardContent>
-              </Card>
-            </StaggerItem>
-          ))}
-        </StaggerChildren>
+        {/* Image Slider - Moved from ImpactSection */}
+        <FadeIn delay={0.3}>
+          <div className="max-w-6xl mx-auto">
+            <Carousel.Root
+              defaultPage={0}
+              slideCount={sliderImages.length}
+              className="w-full relative"
+            >
+              <Carousel.ItemGroup className="overflow-hidden rounded-2xl shadow-sm border bg-background mb-4">
+                {sliderImages.map((img, index) => (
+                  <Carousel.Item key={index} index={index}>
+                    <div className="relative aspect-video">
+                      <Image 
+                        src={img} 
+                        alt={`Impact image ${index + 1}`} 
+                        fill 
+                        className="object-cover transition-transform duration-700" 
+                        sizes="(max-width: 1200px) 100vw, 1200px"
+                      />
+                    </div>
+                  </Carousel.Item>
+                ))}
+              </Carousel.ItemGroup>
+
+              <div className="flex items-center gap-4">
+                <Carousel.PrevTrigger className="p-2 bg-background hover:bg-muted border rounded-lg transition-colors shrink-0 flex items-center justify-center">
+                  <ChevronLeft className="w-5 h-5 text-foreground" />
+                </Carousel.PrevTrigger>
+
+                <Carousel.IndicatorGroup className="flex gap-2 overflow-x-auto scrollbar-hide flex-1 px-2 justify-center">
+                  {sliderImages.map((img, index) => (
+                    <Carousel.Indicator
+                      key={index}
+                      index={index}
+                      className="shrink-0 border-2 border-transparent data-[state=current]:border-primary rounded-md overflow-hidden cursor-pointer transition-all hover:border-gray-300 h-16 w-24 relative"
+                    >
+                      <Image
+                        src={img}
+                        alt={`Thumbnail ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </Carousel.Indicator>
+                  ))}
+                </Carousel.IndicatorGroup>
+
+                <Carousel.NextTrigger className="p-2 bg-background hover:bg-muted border rounded-lg transition-colors shrink-0 flex items-center justify-center">
+                  <ChevronRight className="w-5 h-5 text-foreground" />
+                </Carousel.NextTrigger>
+              </div>
+            </Carousel.Root>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )

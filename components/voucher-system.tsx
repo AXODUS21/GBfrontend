@@ -2,34 +2,40 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { School, BookOpen, Globe, CheckCircle } from "lucide-react"
+import { School, GraduationCap, CircleDollarSign, Globe, Handshake, BarChart3 } from "lucide-react"
 import { motion } from "framer-motion"
 import { FadeIn, StaggerChildren, StaggerItem, ScaleIn, MagneticButton } from "@/components/motion"
 
-const steps = [
+const pathways = [
   {
-    icon: School,
-    title: "Schools Apply",
-    text: "Partner schools identify students with educational need and apply for vouchers.",
+    icon: CircleDollarSign,
+    title: "Subsidized Programs",
     color: "from-blue-500 to-blue-600",
   },
   {
-    icon: BookOpen,
-    title: "Services Delivered",
-    text: "Students receive tutoring, mentorship, or educational materials through approved vendors.",
+    icon: GraduationCap,
+    title: "Fully Funded Programs",
     color: "from-emerald-500 to-emerald-600",
   },
   {
-    icon: Globe,
-    title: "Global Matching",
-    text: "Each U.S. voucher creates a matching voucher for a partner school abroad.",
+    icon: School,
+    title: "School-Based Access",
     color: "from-orange-500 to-orange-600",
   },
   {
-    icon: CheckCircle,
-    title: "Transparent Tracking",
-    text: "Schools maintain records. We track every voucher for complete accountability.",
+    icon: Globe,
+    title: "Community Access Programs",
     color: "from-violet-500 to-violet-600",
+  },
+  {
+    icon: Handshake,
+    title: "Sponsored Access",
+    color: "from-pink-500 to-pink-600",
+  },
+  {
+    icon: BarChart3,
+    title: "Priority Access",
+    color: "from-amber-500 to-amber-600",
   },
 ]
 
@@ -44,46 +50,39 @@ export default function VoucherSystem() {
         <div className="text-center mb-20">
           <FadeIn>
             <span className="text-sm font-bold uppercase tracking-widest text-primary-foreground/60 mb-3 block">
-              Full Accountability
+              Program Pathways
             </span>
           </FadeIn>
           <FadeIn delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
-              Accountability & Transparency
+              Program Access Pathways
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-              We maintain clear, structured oversight to ensure funds are used responsibly and program services are delivered as intended.
+              We provide structured access to educational programs through multiple pathways based on funding, eligibility, and partner alignment.
             </p>
           </FadeIn>
         </div>
 
-        {/* Steps Grid with connecting lines */}
-        <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20" staggerDelay={0.12}>
-          {steps.map((step, idx) => {
-            const Icon = step.icon
+        {/* Pathways Grid */}
+        <StaggerChildren className="grid grid-cols-2 lg:grid-cols-3 gap-8 mb-20" staggerDelay={0.08}>
+          {pathways.map((pathway, idx) => {
+            const Icon = pathway.icon
             return (
               <StaggerItem key={idx}>
                 <motion.div
-                  className="text-center group"
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 text-center group border border-white/10 hover:bg-white/10 transition-all duration-300"
+                  whileHover={{ y: -6, borderColor: "rgba(255,255,255,0.2)" }}
                 >
-                  {/* Step number */}
-                  <div className="text-xs font-bold text-primary-foreground/30 mb-3 tracking-widest">
-                    STEP {String(idx + 1).padStart(2, "0")}
-                  </div>
-                  {/* Icon */}
                   <motion.div
-                    className={`w-16 h-16 mx-auto mb-5 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+                    className={`w-14 h-14 mx-auto mb-5 bg-gradient-to-br ${pathway.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
                     whileHover={{ rotate: [0, -5, 5, 0] }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Icon size={28} className="text-white" />
+                    <Icon size={24} className="text-white" />
                   </motion.div>
-                  <h3 className="font-bold text-lg mb-3">{step.title}</h3>
-                  <p className="text-sm text-primary-foreground/70 leading-relaxed">{step.text}</p>
+                  <h3 className="font-bold text-lg leading-tight">{pathway.title}</h3>
                 </motion.div>
               </StaggerItem>
             )

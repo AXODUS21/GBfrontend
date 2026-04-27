@@ -17,7 +17,6 @@ const navLinks = [
   },
   { label: "Join & Get Support", href: "/join" },
   { label: "Programs", href: "/programs" },
-  { label: "Sponsor", href: "/sponsor" },
   { label: "Contact", href: "/contact" },
 ];
 

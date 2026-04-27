@@ -87,37 +87,45 @@ export default function HeroSection() {
         className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center text-white pt-20"
         style={{ y: textY, opacity, scale }}
       >
-        {/* Overline badge */}
-        <FadeIn delay={0.2}>
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-white/90 tracking-wide">
-              Official 501 Nonprofit Advocacy
-            </span>
-          </div>
-        </FadeIn>
+
 
         <TextReveal
-          text="Empowering Global Education with a 3-Way Impact Model"
+          text="Expanding Access to Global Education"
           as="h1"
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-[1.05] tracking-tight"
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[1.05] tracking-tight"
         />
-        <FadeIn delay={0.4}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <FadeIn delay={0.3}>
+          <p className="max-w-3xl mx-auto text-lg md:text-xl text-white/80 mb-10 leading-relaxed">
+            We connect schools, educators, and communities through structured, partner-based programs 
+            that expand access to academic support, educator pathways, and workforce development opportunities.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.5}>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
             <MagneticButton>
               <Link href="/sponsor">
-                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 hover:-translate-y-1 transition-all duration-300 border border-accent/20">
-                  Donate Now and Apply for Support
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-7 text-lg font-bold rounded-full shadow-2xl hover:shadow-accent/25 hover:-translate-y-1 transition-all duration-300 border border-accent/20 w-full sm:w-auto">
+                  Fund Programs
                 </Button>
               </Link>
             </MagneticButton>
             <MagneticButton>
-              <Link href="/programs">
+              <Link href="/join">
                 <Button
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-10 py-7 text-lg font-medium rounded-full bg-white/5 backdrop-blur-sm transition-all duration-300"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 py-7 text-lg font-medium rounded-full bg-white/5 backdrop-blur-sm transition-all duration-300 w-full sm:w-auto"
                 >
-                  Learn More
+                  Apply for Programs
+                </Button>
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link href="/join">
+                <Button
+                  variant="outline"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 py-7 text-lg font-medium rounded-full bg-white/5 backdrop-blur-sm transition-all duration-300 w-full sm:w-auto"
+                >
+                  Partner With Us
                 </Button>
               </Link>
             </MagneticButton>

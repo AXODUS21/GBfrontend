@@ -12,6 +12,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { FadeIn, TextReveal, StaggerChildren, StaggerItem } from "@/components/motion"
+import { toast } from "sonner"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ export default function ContactPage() {
     reason: "",
     email: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleFormChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target
@@ -27,23 +29,28 @@ export default function ContactPage() {
 
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
     
-    let targetEmail = "info@globalbrightfutures.org"
-    if (formData.category === "School Partnership") {
-      targetEmail = "partnership@globalbrightfutures.org"
-    } else if (formData.category === "Join as Educators and Tutors") {
-      targetEmail = "educators@globalbrightfutures.org"
-    } else if (formData.category === "Students & Families Support") {
-      targetEmail = "families@globalbrightfutures.org"
+    try {
+      const res = await fetch("/api/send-support", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        throw new Error("Failed to send message")
+      }
+
+      toast.success("Your inquiry has been sent successfully!")
+      setFormData({ category: "", reason: "", email: "" })
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
     }
-    
-    const subject = encodeURIComponent(`Application: ${formData.category}`)
-    const bodyText = `Applicant Email: ${formData.email}\n\nCategory: ${formData.category}\n\nReason for applying:\n${formData.reason}`
-    const body = encodeURIComponent(bodyText)
-    
-    window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`
-    
-    setFormData({ category: "", reason: "", email: "" })
   }
 
   return (
@@ -221,9 +228,10 @@ export default function ContactPage() {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Apply Now
+                    {isSubmitting ? "Sending..." : "Apply Now"}
                   </Button>
                 </motion.form>
               </div>

@@ -144,15 +144,18 @@ export default function AboutPage() {
           <div className="text-center mb-14">
             <FadeIn>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Our Leadership
+                Leadership and Governance
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
+              <p className="text-muted-foreground text-lg mb-6 max-w-2xl mx-auto">
+                Leadership and governance ensure responsible oversight of programs, partnerships, and organizational operations.
+              </p>
               <Link
                 href="/board-of-directors"
                 className="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors"
               >
-                View Full Board →
+                View Full Leadership →
               </Link>
             </FadeIn>
           </div>
@@ -162,8 +165,8 @@ export default function AboutPage() {
               <BoardMember
                 name="Ilyne Cendy Root"
                 title="Founder & President"
-                shortDescription="Educator, nonprofit leader, and global advocate for educational equity whose work is grounded in lived experience and lifelong commitment to service."
-                fullDescription="Ilyne Cendy Root is an educator, nonprofit leader, and global advocate for educational equity. Orphaned at a young age, she developed resilience and understanding of barriers faced by students without stable guidance. Her journey—from an orphaned child to international educator and nonprofit founder—reflects the mission of Global Bright Futures Foundation Inc."
+                shortDescription="Ilyne Cendy Root is an education professional and nonprofit executive with experience in instructional leadership, program development, and cross-cultural education initiatives."
+                fullDescription="Ilyne Cendy Root is an education professional and nonprofit executive with experience in instructional leadership, program development, and cross-cultural education initiatives across the Philippines, Thailand, and the United States. Her focus includes building ethical, school-aligned partnerships and ensuring that all programs operate under structured, transparent, and accountable systems."
                 imageSrc="/ilyne.jpg"
                 imageAlt="Ilyne Cendy Root"
               />
@@ -172,8 +175,8 @@ export default function AboutPage() {
               <BoardMember
                 name="Joseph Root"
                 title="Vice President"
-                shortDescription="Provides executive leadership and operational oversight. Passionate advocate for youth development through mentorship programs."
-                fullDescription="Joseph Root serves as Vice President, providing executive leadership, operational oversight, and strategic support to advance the Foundation's mission. A passionate advocate for youth development through sports and mentorship programs."
+                shortDescription="Joseph Root provides executive and operational leadership, supporting organizational planning, program coordination, and partnership development."
+                fullDescription="Joseph Root provides executive and operational leadership for Global Bright Futures Foundation Inc., supporting organizational planning, program coordination, and partnership development. He works closely with executive leadership to ensure effective program implementation, compliance alignment, and operational consistency across initiatives."
                 imageSrc="/joseph.jpg"
                 imageAlt="Joseph Root"
               />

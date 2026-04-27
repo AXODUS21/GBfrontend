@@ -35,7 +35,7 @@ export default function ProgramFeature() {
           <div className="order-2 md:order-1">
             <FadeIn>
               <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">
-                What We Do
+                What We Deliver
               </span>
             </FadeIn>
             
@@ -47,11 +47,7 @@ export default function ProgramFeature() {
               </h2>
             </FadeIn>
             
-            <FadeIn delay={0.2}>
-              <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-                Every day, we create pathways for learning, opportunity, and long-term community impact.
-              </p>
-            </FadeIn>
+
             
             <StaggerChildren className="space-y-4 mb-10" staggerDelay={0.1}>
               {features.map((feature, idx) => (

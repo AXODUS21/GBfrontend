@@ -15,6 +15,8 @@ import {
   BookOpen,
   Briefcase,
   School,
+  BarChart3,
+  Handshake,
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FadeIn, TextReveal, StaggerChildren, StaggerItem, ScaleIn, MagneticButton, HoverLift } from "@/components/motion";
@@ -90,7 +92,7 @@ export default function SponsorPage() {
           />
           <FadeIn delay={0.5}>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
-              Every donation goes directly toward student tutoring and support, while also creating opportunities for youth tutors and educators. One gift impacts learners in the U.S. and globally.
+              Every contribution directly supports structured academic programs that provide tutoring, mentoring, and educator development through vetted partners. One gift expands access to learning opportunities for students, youth, and educators across the United States and globally.
             </p>
           </FadeIn>
           <FadeIn delay={0.7} className="w-full max-w-2xl mx-auto mt-4">
@@ -99,7 +101,7 @@ export default function SponsorPage() {
                 title='Donation form powered by Zeffy' 
                 className="absolute inset-0 w-full h-full border-0"
                 src='https://www.zeffy.com/embed/donation-form/donate-to-make-a-difference-21717' 
-                allowPaymentRequest 
+                {...({ allowPaymentRequest: true } as any)}
                 allowTransparency={true}
                 scrolling="no"
               />
@@ -133,7 +135,7 @@ export default function SponsorPage() {
                     <Users className="text-primary" size={24} />
                   </div>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
-                    Many students fall behind not because of ability—but because they <span className="text-foreground font-semibold">lack support.</span>
+                    Educational opportunity is often determined by access to <span className="text-foreground font-semibold">consistent academic support</span> and structured learning pathways.
                   </p>
                 </div>
               </FadeIn>
@@ -144,7 +146,7 @@ export default function SponsorPage() {
                     <GraduationCap className="text-accent" size={24} />
                   </div>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
-                    At the same time, many aspiring educators and graduates <span className="text-foreground font-semibold">lack opportunities.</span>
+                    At the same time, many educators, college students, and emerging professionals lack <span className="text-foreground font-semibold">structured opportunities</span> to apply their skills in meaningful education settings.
                   </p>
                 </div>
               </FadeIn>
@@ -152,7 +154,7 @@ export default function SponsorPage() {
               <FadeIn delay={0.6} direction="up">
                 <div className="mt-4 p-8 md:p-10 rounded-3xl bg-primary text-primary-foreground text-center shadow-xl shadow-primary/10">
                   <p className="text-xl md:text-2xl font-bold leading-tight">
-                    We bring both together to create a stronger, more connected learning system.
+                    This program addresses both challenges through a coordinated system that connects learners with academic support and creates workforce-aligned education opportunities.
                   </p>
                 </div>
               </FadeIn>
@@ -168,12 +170,12 @@ export default function SponsorPage() {
           <div className="text-center mb-16">
             <FadeIn>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Your Donation Changes Lives
+                How Your Support Creates Impact
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Your contribution helps solve all these challenges through one integrated program.
+              <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">
+                Your contribution supports an integrated program model where all funds are applied directly to services delivered by approved providers under structured reporting and oversight.
               </p>
             </FadeIn>
           </div>
@@ -182,23 +184,23 @@ export default function SponsorPage() {
             {[
               { 
                 icon: BookOpen, 
-                title: "For Students", 
-                desc: "Your support helps students succeed by providing tutoring in reading and math, mentoring, and access to learning resources that build confidence." 
+                title: "Students", 
+                desc: "Tutoring, mentoring, and academic support that builds confidence and improves learning outcomes." 
               },
               { 
                 icon: Briefcase, 
-                title: "For Tutors and Educators", 
-                desc: "Your support creates paid opportunities for college students, graduates, and educators to gain experience, build skills, and grow in their careers." 
+                title: "Tutors & Educators", 
+                desc: "Paid and structured opportunities for college students, graduates, and educators to gain experience and develop professional skills." 
               },
               { 
                 icon: School, 
-                title: "For Partner Schools", 
-                desc: "Your support helps schools serve more students without adding costs by expanding tutoring and academic programs where they are needed most." 
+                title: "Partner Schools", 
+                desc: "Expanded academic support services without increasing school staffing costs." 
               },
               { 
                 icon: Users, 
-                title: "For Families and Communities", 
-                desc: "Your support makes learning more accessible, keeps students engaged, and strengthens families and communities through better education opportunities." 
+                title: "Families & Communities", 
+                desc: "Improved access to learning support that strengthens educational engagement and long-term opportunity." 
               },
             ].map((item, idx) => (
               <StaggerItem key={idx}>
@@ -228,25 +230,29 @@ export default function SponsorPage() {
       <section className="section-padding bg-secondary/50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-14">
-              What Your Gift Provides
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Impact Levels
             </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-14">
+              All contributions are allocated directly to program services delivered through approved education providers.
+            </p>
           </FadeIn>
           
-          <StaggerChildren className="grid sm:grid-cols-3 gap-8" staggerDelay={0.12}>
+          <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
             {[
-              { amount: "$50", impact: "School supplies for 2 students" },
-              { amount: "$200", impact: "Our model uses service-based funding (no cash), applies funds directly to approved services." },
-              { amount: "$1,000", impact: "Full semester of support for multiple students" },
+              { amount: "$50", impact: "Student learning materials and academic resources" },
+              { amount: "$200", impact: "Partial tutoring and structured learning support" },
+              { amount: "$1,000", impact: "Expanded multi-student academic support programs" },
+              { amount: "Custom", impact: "Scaled program support based on funding priorities" },
             ].map((item, idx) => (
               <StaggerItem key={idx}>
                 <motion.div
-                  className="bg-background p-10 rounded-3xl shadow-lg shadow-primary/5 border border-border/50 hover:shadow-xl transition-shadow duration-300"
+                  className="bg-background p-8 rounded-3xl shadow-lg shadow-primary/5 border border-border/50 hover:shadow-xl transition-shadow duration-300 h-full flex flex-col justify-center"
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="text-4xl font-bold text-gradient mb-4">{item.amount}</div>
-                  <p className="text-muted-foreground leading-relaxed">{item.impact}</p>
+                  <div className="text-3xl font-bold text-gradient mb-3">{item.amount}</div>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{item.impact}</p>
                 </motion.div>
               </StaggerItem>
             ))}
@@ -263,6 +269,61 @@ export default function SponsorPage() {
             </MagneticButton>
           </FadeIn>
         </div>
+      </section>
+
+      {/* Oversight & Accountability */}
+      <section className="section-padding bg-background relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <FadeIn direction="left">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                  Oversight & Accountability
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  All programs operate under structured oversight systems ensuring funds are used responsibly and as intended.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "Funds are used exclusively for approved educational services",
+                    "Services are delivered by vetted providers",
+                    "Outcomes are tracked through aggregate reporting",
+                    "No cash is distributed to individuals"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 group">
+                      <div className="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <CheckCircle className="text-primary" size={14} />
+                      </div>
+                      <span className="text-foreground/80 font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+            
+            <FadeIn direction="right" delay={0.2}>
+              <div className="bg-secondary/30 border border-border/50 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16" />
+                <div className="relative z-10 text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <Shield className="text-primary" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">Trusted Oversight</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    Global Bright Futures Foundation Inc. is a 501(c)(3) nonprofit organization committed to the highest standards of financial transparency and program integrity.
+                  </p>
+                  <Link href="https://app.candid.org/profile/16509371/global-bright-futures-foundation-inc-41-2810962/?pkId=0b067e55-2a04-462c-8f3f-fc2e3d05c211" target="_blank">
+                    <Button variant="outline" className="rounded-full border-primary/20 hover:bg-primary/5">
+                      View Transparency Profile
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </section>
 
       {/* Brighter Futures */}
@@ -282,10 +343,75 @@ export default function SponsorPage() {
       <section className="py-14 bg-background">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
-            <p className="text-muted-foreground">
-              <strong className="text-foreground">Global Bright Futures Foundation Inc.</strong> is a 501(c)(3) nonprofit organization (EIN: 41-2810962). All donations are tax-deductible to the full extent permitted by law.
+            <p className="text-muted-foreground leading-relaxed">
+              Global Bright Futures Foundation Inc. is a U.S. 501(c)(3) nonprofit organization (EIN: 41-2810962).
+              <br />
+              Donations are tax-deductible in the United States to the extent permitted by law. International tax deductibility varies by jurisdiction.
             </p>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Partner Benefits & Recognition */}
+      <section className="section-padding bg-secondary/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-900/[0.02] bg-[center_top_-1px] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <FadeIn>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                Partner <span className="text-primary">Benefits</span> & Recognition
+              </h2>
+              <p className="text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+                Join a community of changemakers making education accessible worldwide
+              </p>
+            </FadeIn>
+          </div>
+
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
+            {[
+              {
+                title: "Recognition & Visibility",
+                description: "Featured on our website, social media, and annual reports to showcase your commitment to global education.",
+                icon: Globe2,
+                color: "from-blue-500 to-blue-600"
+              },
+              {
+                title: "Impact Reports",
+                description: "Exclusive impact reports and regular updates on how your contributions are transforming learning outcomes.",
+                icon: BarChart3,
+                color: "from-indigo-500 to-indigo-600"
+              },
+              {
+                title: "Community Engagement",
+                description: "Opportunities for employee and community involvement through structured volunteering and mentorship programs.",
+                icon: Handshake,
+                color: "from-emerald-500 to-emerald-600"
+              },
+              {
+                title: "Direct Connection",
+                description: "A direct connection to the students you empower, with stories and updates from the communities you support.",
+                icon: Heart,
+                color: "from-rose-500 to-rose-600"
+              }
+            ].map((benefit, idx) => (
+              <StaggerItem key={idx}>
+                <motion.div
+                  className="bg-background rounded-[2rem] p-8 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 h-full flex flex-col group"
+                  whileHover={{ y: -8 }}
+                >
+                  <div className={`w-14 h-14 bg-gradient-to-br ${benefit.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <benefit.icon className="text-white" size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-foreground leading-tight">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-foreground/60 text-sm leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
         </div>
       </section>
 
@@ -293,3 +419,4 @@ export default function SponsorPage() {
     </main>
   );
 }
+
