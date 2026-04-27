@@ -206,60 +206,30 @@ export default function AboutPage() {
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:40px_40px]" />
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <FadeIn direction="left">
-              <div>
-                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-6 block">Efficiency & Scale</span>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                  Operations & <span className="text-primary italic">Technology</span>
-                </h2>
-                <div className="space-y-6 text-background/80 text-lg leading-relaxed">
-                  <p>
-                    We utilize nonprofit-eligible technology platforms to support communication, coordination, and program management.
-                  </p>
-                  <p>
-                    These systems improve operational efficiency and accessibility but do not deliver educational services directly. Where eligible, we leverage nonprofit programs or discounted access from technology providers.
-                  </p>
-                  <div className="pt-4 flex flex-wrap gap-3">
-                    {["Google Workspace", "Zoom", "LMS", "Design Tools", "AI Administrative Systems"].map((tool) => (
-                      <span key={tool} className="px-4 py-2 rounded-full bg-white/10 text-sm font-medium border border-white/5">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+          <FadeIn>
+            <div>
+              <span className="text-sm font-bold text-primary uppercase tracking-widest mb-6 block">Efficiency & Scale</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                Operations & <span className="text-primary italic">Technology</span>
+              </h2>
+              <div className="space-y-6 text-background/80 text-lg leading-relaxed max-w-3xl mx-auto">
+                <p>
+                  We utilize nonprofit-eligible technology platforms to support communication, coordination, and program management.
+                </p>
+                <p>
+                  These systems improve operational efficiency and accessibility but do not deliver educational services directly. Where eligible, we leverage nonprofit programs or discounted access from technology providers.
+                </p>
+                <div className="pt-4 flex flex-wrap gap-3 justify-center">
+                  {["Google Workspace", "Zoom", "LMS", "Design Tools", "AI Administrative Systems"].map((tool) => (
+                    <span key={tool} className="px-4 py-2 rounded-full bg-white/10 text-sm font-medium border border-white/5">
+                      {tool}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </FadeIn>
-            
-            <FadeIn direction="right" delay={0.2}>
-              <div className="bg-white/5 backdrop-blur-md p-10 rounded-4xl border border-white/10 relative">
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-primary/20 rounded-full blur-2xl animate-pulse" />
-                <div className="flex items-start gap-6 mb-8">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
-                    <Shield size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-2 text-white">Vetted Delivery</h4>
-                    <p className="text-background/60 leading-relaxed">
-                      All educational services are delivered exclusively through vetted education providers and approved partners under structured oversight.
-                    </p>
-                  </div>
-                </div>
-                <div className="h-px bg-white/10 mb-8" />
-                <div className="grid grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <div className="text-primary font-bold text-3xl">100%</div>
-                    <div className="text-sm text-background/40 uppercase tracking-tighter">Partner Delivered</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-primary font-bold text-3xl text-nowrap">Audit Ready</div>
-                    <div className="text-sm text-background/40 uppercase tracking-tighter">Full Oversight</div>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
