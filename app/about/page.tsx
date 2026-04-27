@@ -3,12 +3,11 @@
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Link from "next/link";
-import Image from "next/image";
-import { Users, Target, Shield } from "lucide-react";
+import { Users, Target, Shield, Eye, Cpu, Network, Globe, BookOpen } from "lucide-react";
 import { BoardMember } from "@/components/board-member";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FadeIn, StaggerChildren, StaggerItem, TextReveal, DrawLine, ScaleIn, MagneticButton } from "@/components/motion";
+import { FadeIn, StaggerChildren, StaggerItem, TextReveal, DrawLine, ScaleIn, MagneticButton, HoverLift } from "@/components/motion";
 
 export default function AboutPage() {
   const heroRef = useRef<HTMLElement>(null);
@@ -20,13 +19,13 @@ export default function AboutPage() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <main>
+    <main className="bg-background">
       <Navigation />
 
       {/* Hero with Parallax */}
       <section
         ref={heroRef}
-        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
       >
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
@@ -35,7 +34,7 @@ export default function AboutPage() {
             y: bgY,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
         <div className="absolute inset-0 grain pointer-events-none" />
 
         <motion.div
@@ -43,98 +42,224 @@ export default function AboutPage() {
           style={{ opacity: textOpacity }}
         >
           <FadeIn>
-            <span className="text-sm font-bold uppercase tracking-widest text-white/60 mb-4 block">
-              Our Story
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
+              Our Identity
             </span>
           </FadeIn>
           <TextReveal
             text="About Us"
             as="h1"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight"
           />
           <FadeIn delay={0.4}>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-              Empowering students locally and globally through school-to-school partnerships.
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-light leading-relaxed">
+              Strengthening structured connections between schools, educators, and communities to expand access to learning support.
             </p>
           </FadeIn>
         </motion.div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="section-padding bg-background">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-20">
-            <FadeIn direction="left">
-              <div>
-                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">Our Mission</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
-                  Expanding Access to Education
+      {/* OUR ORGANIZATION */}
+      <section className="section-padding relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <FadeIn direction="right">
+              <div className="sticky top-32">
+                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-4 block">Our Organization</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-[1.1]">
+                  Building Partnerships for <span className="text-primary italic">Consistent</span> Delivery
                 </h2>
-                <DrawLine className="w-12 h-0.5 bg-accent mb-6" />
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  Global Bright Futures Foundation empowers underserved learners by expanding access to scholarships, tutoring, mentorship, and innovative educational programs that foster academic growth, opportunity, and lifelong success—locally and globally.
-                </p>
+                <DrawLine className="w-24 h-1 bg-primary mb-10" />
               </div>
             </FadeIn>
-            <FadeIn direction="right" delay={0.15}>
-              <div>
-                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-3 block">Our Vision</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
-                  Education Without Borders
-                </h2>
-                <DrawLine className="w-12 h-0.5 bg-accent mb-6" delay={0.15} />
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  We envision a world where every learner regardless of income, location, or circumstance has access to meaningful, high-quality education pathways that unlock potential and create lasting opportunity across generations.
+            
+            <div className="space-y-8">
+              <FadeIn delay={0.1}>
+                <p className="text-xl text-foreground leading-relaxed">
+                  Global Bright Futures Foundation is a U.S.-based nonprofit organization that works in partnership with schools, educators, and community organizations to expand access to structured educational support programs.
                 </p>
-              </div>
-            </FadeIn>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We coordinate with vetted education providers to ensure consistent, accountable, and scalable delivery of services across regional and international settings.
+                </p>
+              </FadeIn>
+              <FadeIn delay={0.3}>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Our role is to facilitate partnerships that strengthen access to academic support, educator development, and workforce-aligned learning opportunities.
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="section-padding bg-secondary/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
+      {/* OUR PURPOSE & HOW WE WORK */}
+      <section className="section-padding bg-secondary/30 relative overflow-hidden">
+        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
         
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+            {/* Purpose */}
+            <div className="space-y-10">
+              <FadeIn>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Target size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold">Our Purpose</h3>
+                </div>
+                <div className="space-y-6">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    We address gaps in educational access by strengthening structured connections between schools, educators, and communities.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Our focus is to expand access to learning support and development pathways through coordinated, partner-based program delivery that serves students, educators, and emerging professionals.
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* How We Work */}
+            <div className="space-y-10">
+              <FadeIn delay={0.2}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Network size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold">How We Work</h3>
+                </div>
+                <div className="space-y-6">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    We operate through a structured, partnership-based model that connects funding partners, schools, and approved education providers.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    All programs are delivered exclusively through vetted partners to ensure accountability, consistency, and responsible use of resources.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    This model supports scalable implementation across local, regional, and international education networks.
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OUR VALUES */}
+      <section className="section-padding bg-background">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
             <FadeIn>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <span className="text-sm font-bold text-primary uppercase tracking-widest mb-4 block">Core Principles</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                 Our Values
               </h2>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-                The principles that guide everything we do.
-              </p>
+              <DrawLine className="w-20 h-1 bg-primary mx-auto mb-8" />
             </FadeIn>
           </div>
           
-          <StaggerChildren className="grid md:grid-cols-3 gap-12" staggerDelay={0.12}>
+          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.1}>
             {[
-              { icon: Target, title: "Equity", desc: "Every student deserves access to quality education regardless of their circumstances." },
-              { icon: Users, title: "Partnership", desc: "We collaborate with schools and communities for sustainable, impactful solutions." },
-              { icon: Shield, title: "Accountability", desc: "Transparent, audit-ready operations with full IRS compliance." },
+              { 
+                icon: Globe, 
+                title: "Equity", 
+                desc: "We support fair access to educational opportunities across diverse communities." 
+              },
+              { 
+                icon: Users, 
+                title: "Partnership", 
+                desc: "We work collaboratively with schools, educators, and organizations to deliver sustainable impact." 
+              },
+              { 
+                icon: Shield, 
+                title: "Accountability", 
+                desc: "We ensure responsible program delivery through structured oversight and monitoring systems." 
+              },
+              { 
+                icon: Eye, 
+                title: "Transparency", 
+                desc: "We maintain clear reporting and visibility into program operations and outcomes." 
+              },
             ].map((value, idx) => (
               <StaggerItem key={idx}>
-                <motion.div
-                  className="text-center group"
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    className="w-20 h-20 mx-auto mb-6 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300"
-                    whileHover={{ rotate: [0, -5, 5, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <value.icon className="text-primary" size={32} />
-                  </motion.div>
-                  <h3 className="font-bold text-xl text-foreground mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{value.desc}</p>
-                </motion.div>
+                <HoverLift className="h-full">
+                  <div className="h-full p-8 rounded-3xl bg-secondary/50 border border-border/50 hover:border-primary/20 transition-all duration-300">
+                    <div className="w-14 h-14 mb-8 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                      <value.icon size={28} />
+                    </div>
+                    <h3 className="font-bold text-xl text-foreground mb-4">{value.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{value.desc}</p>
+                  </div>
+                </HoverLift>
               </StaggerItem>
             ))}
           </StaggerChildren>
+        </div>
+      </section>
+
+      {/* OPERATIONS & TECHNOLOGY */}
+      <section className="section-padding bg-foreground text-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:40px_40px]" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <FadeIn direction="left">
+              <div>
+                <span className="text-sm font-bold text-primary uppercase tracking-widest mb-6 block">Efficiency & Scale</span>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                  Operations & <span className="text-primary italic">Technology</span>
+                </h2>
+                <div className="space-y-6 text-background/80 text-lg leading-relaxed">
+                  <p>
+                    We utilize nonprofit-eligible technology platforms to support communication, coordination, and program management.
+                  </p>
+                  <p>
+                    These systems improve operational efficiency and accessibility but do not deliver educational services directly. Where eligible, we leverage nonprofit programs or discounted access from technology providers.
+                  </p>
+                  <div className="pt-4 flex flex-wrap gap-3">
+                    {["Google Workspace", "Zoom", "LMS", "Design Tools", "AI Administrative Systems"].map((tool) => (
+                      <span key={tool} className="px-4 py-2 rounded-full bg-white/10 text-sm font-medium border border-white/5">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+            
+            <FadeIn direction="right" delay={0.2}>
+              <div className="bg-white/5 backdrop-blur-md p-10 rounded-4xl border border-white/10 relative">
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-primary/20 rounded-full blur-2xl animate-pulse" />
+                <div className="flex items-start gap-6 mb-8">
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <Shield size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2 text-white">Vetted Delivery</h4>
+                    <p className="text-background/60 leading-relaxed">
+                      All educational services are delivered exclusively through vetted education providers and approved partners under structured oversight.
+                    </p>
+                  </div>
+                </div>
+                <div className="h-px bg-white/10 mb-8" />
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <div className="text-primary font-bold text-3xl">100%</div>
+                    <div className="text-sm text-background/40 uppercase tracking-tighter">Partner Delivered</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-primary font-bold text-3xl text-nowrap">Audit Ready</div>
+                    <div className="text-sm text-background/40 uppercase tracking-tighter">Full Oversight</div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -193,7 +318,7 @@ export default function AboutPage() {
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
               Accountability & Transparency
-            </h2>
+              </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-primary-foreground/80 mb-12 max-w-2xl mx-auto text-center">

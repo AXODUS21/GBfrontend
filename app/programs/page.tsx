@@ -21,7 +21,7 @@ const programCategories = [
     benefits: [
       "Tutoring in core subjects",
       "Academic enrichment and skill-building",
-      "Mentoring and learning support",
+      "Interest based learningInterest-based learning programs (STEM, coding, financial literacy, and life skills — when funding is available) learning support",
       "Access to learning resources",
     ],
   },
@@ -560,8 +560,8 @@ export default function ProgramsPage() {
 
           <FadeIn delay={0.6}>
             <div className="bg-primary/5 border border-primary/10 rounded-[2rem] p-8 text-center relative overflow-hidden group max-w-4xl mx-auto">
-               <div className="absolute top-0 left-0 w-2 h-full bg-primary/20 group-hover:bg-primary transition-colors" />
-               <p className="text-lg md:text-xl italic text-foreground/70 leading-relaxed">
+              <div className="absolute top-0 left-0 w-2 h-full bg-primary/20 group-hover:bg-primary transition-colors" />
+              <p className="text-lg md:text-xl italic text-foreground/70 leading-relaxed">
                 All partners are vetted for quality, compliance, and delivery standards.
               </p>
             </div>
