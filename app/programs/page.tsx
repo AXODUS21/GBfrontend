@@ -172,61 +172,6 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* Why This Matters */}
-      <section className="section-padding bg-background relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <FadeIn>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Why This Matters
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Addressing the gap between student support and educator opportunities.
-              </p>
-            </FadeIn>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-8">
-              <FadeIn delay={0.2} direction="up">
-                <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8 rounded-3xl bg-secondary/30 border border-border/50 hover:border-primary/20 transition-colors duration-500">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Users className="text-primary" size={24} />
-                  </div>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
-                    Educational opportunity is often determined by access to <span className="text-foreground font-semibold">consistent academic support</span> and structured learning pathways.
-                  </p>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.4} direction="up">
-                <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8 rounded-3xl bg-secondary/30 border border-border/50 hover:border-primary/20 transition-colors duration-500">
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="text-accent" size={24} />
-                  </div>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
-                    At the same time, many educators, college students, and emerging professionals lack <span className="text-foreground font-semibold">structured opportunities</span> to apply their skills in meaningful education settings.
-                  </p>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.6} direction="up">
-                <div className="mt-4 p-8 md:p-10 rounded-3xl bg-primary text-primary-foreground text-center shadow-xl shadow-primary/10">
-                  <p className="text-xl md:text-2xl font-bold leading-tight">
-                    This program addresses both challenges through a coordinated system that connects learners with academic support and creates workforce-aligned education opportunities.
-                  </p>
-                </div>
-              </FadeIn>
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      </section>
-
-
       {/* Programs Offered */}
       <section className="section-padding bg-secondary/30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
