@@ -8,50 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Mail, Phone, MapPin, Facebook } from "lucide-react"
-import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { FadeIn, TextReveal, StaggerChildren, StaggerItem } from "@/components/motion"
-import { toast } from "sonner"
+import { SmartIntakeHeroCard } from "@/components/smart-intake-form"
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    category: "",
-    reason: "",
-    email: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleApplySubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    try {
-      const res = await fetch("/api/send-support", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (!res.ok) {
-        throw new Error("Failed to send message")
-      }
-
-      toast.success("Your inquiry has been sent successfully!")
-      setFormData({ category: "", reason: "", email: "" })
-    } catch (error) {
-      toast.error("Failed to send message. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   return (
     <main>
@@ -103,8 +65,8 @@ export default function ContactPage() {
                 title: "Phone",
                 content: (
                   <>
-                    <a href="tel:6614889935" className="text-primary hover:underline text-foreground/60">
-                      661 488 9935
+                    <a href="tel:8186392006" className="text-primary hover:underline text-foreground/60">
+                      818 639 2006
                     </a>
                     <p className="text-foreground/50 text-sm mt-2">Mon-Fri, 9 AM - 6 PM PT</p>
                   </>
@@ -163,81 +125,23 @@ export default function ContactPage() {
           </FadeIn>
 
           {/* Inquiry Forms */}
-          <div className="grid md:grid-cols-2 gap-16">
-            <FadeIn direction="left">
+          <div className="grid lg:grid-cols-3 gap-16">
+            <FadeIn direction="left" className="lg:col-span-2">
               <div>
                 <h2 className="text-3xl font-bold text-foreground mb-8">Inquiry Forms</h2>
-                
-                {/* Inquiry Form */}
-                <motion.form
-                  onSubmit={handleApplySubmit}
-                  className="space-y-5"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div>
-                    <label htmlFor="email" className="block font-semibold text-foreground mb-2 text-sm">
-                      Your Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleFormChange}
-                      required
-                      placeholder="your@email.com"
-                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="category" className="block font-semibold text-foreground mb-2 text-sm">
-                      I am interested in:
-                    </label>
-                    <select 
-                      id="category"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleFormChange}
-                      required
-                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                    >
-                      <option value="" disabled>Select an option</option>
-                      <option value="Students & Families Support">Students & Families Support</option>
-                      <option value="Join as Educators and Tutors">Join as Educators and Tutors</option>
-                      <option value="School Partnership">School Partnership</option>
-                      <option value="Support the Program">Support the Program</option>
-                      <option value="Request More Information">Request More Information</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="reason" className="block font-semibold text-foreground mb-2 text-sm">
-                      Reason for applying:
-                    </label>
-                    <textarea
-                      id="reason"
-                      name="reason"
-                      value={formData.reason}
-                      onChange={handleFormChange}
-                      required
-                      rows={5}
-                      placeholder="Tell us why you are applying..."
-                      className="w-full px-4 py-3 border border-border/50 rounded-xl bg-background text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300"
-                    ></textarea>
-                  </div>
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? "Sending..." : "Apply Now"}
-                  </Button>
-                </motion.form>
+                <Card className="border-border/50 bg-background shadow-xl overflow-hidden">
+                  <CardHeader className="bg-primary/5 border-b border-border/50">
+                    <CardTitle className="text-xl">Smart Intake Form</CardTitle>
+                    <p className="text-sm text-foreground/60">Select your category to get started with the right team</p>
+                  </CardHeader>
+                  <CardContent className="pt-8">
+                    <SmartIntakeHeroCard />
+                  </CardContent>
+                </Card>
               </div>
             </FadeIn>
 
-            <FadeIn direction="right" delay={0.15}>
+            <FadeIn direction="right" delay={0.15} className="lg:col-span-1">
               <div className="bg-secondary/30 rounded-3xl p-8 border border-border/30">
                 <h3 className="text-2xl font-bold text-foreground mb-8">Frequently Asked Questions</h3>
                 <Accordion type="single" collapsible className="w-full space-y-4">
