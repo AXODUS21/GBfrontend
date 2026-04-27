@@ -9,6 +9,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FadeIn, StaggerChildren, StaggerItem, TextReveal, DrawLine, ScaleIn, MagneticButton, HoverLift } from "@/components/motion";
 
+import FounderMessage from "@/components/founder-message";
+
 export default function AboutPage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -94,6 +96,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <FounderMessage />
 
       {/* OUR PURPOSE & HOW WE WORK */}
       <section className="section-padding bg-secondary/30 relative overflow-hidden">

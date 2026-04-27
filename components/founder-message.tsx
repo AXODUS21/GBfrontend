@@ -58,17 +58,19 @@ export default function FounderMessage() {
             
             <FadeIn direction="right" delay={0.1}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-tight">
-                <span className="text-primary">"</span>Education changed my life<span className="text-primary">"</span>
+                <span className="text-primary">“</span>Education has the power to change lives and open access to opportunity.<span className="text-primary">”</span>
               </h2>
             </FadeIn>
             
             <FadeIn direction="right" delay={0.2}>
+              <div className="space-y-5 text-muted-foreground leading-relaxed text-lg italic border-l-4 border-primary/20 pl-6 mb-8">
+                <p>
+                  Global Bright Futures Foundation was created to expand educational support through structured partnerships that connect students with tutoring, mentorship, and essential learning resources.
+                </p>
+              </div>
               <div className="space-y-5 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  Orphaned at a young age, I learned early what it meant to navigate life without consistent support—developing resilience and a deep understanding of the barriers faced by students without stable guidance or resources.
-                </p>
-                <p>
-                  That belief has guided every step of my journey as an educator and is the foundation of Global Bright Futures Foundation. Through trusted school partnerships, our programs expand access to tutoring, mentorship, and essential educational resources for students who need them most.
+                  Through collaboration with schools and education partners, our programs help expand access to learning opportunities for students who need additional academic support.
                 </p>
               </div>
             </FadeIn>
