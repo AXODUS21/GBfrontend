@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const categoryEmailMap: Record<string, string> = {
-  "Students & Families Support": "familiest@globalbrightfutures.org",
+  "Students & Families Support": "families@globalbrightfutures.org",
   "Educator and Tutor": "educators@globalbrightfutures.org",
   "Vendor Application": "vendor@globalbrightfutures.org",
   "School Partnership": "partnership@globalbrightfutures.org",
