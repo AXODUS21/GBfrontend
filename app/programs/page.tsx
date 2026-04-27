@@ -21,7 +21,7 @@ const programCategories = [
     benefits: [
       "Tutoring in core subjects",
       "Academic enrichment and skill-building",
-      "Interest based learningInterest-based learning programs (STEM, coding, financial literacy, and life skills — when funding is available) learning support",
+      "Interest-based learning programs (STEM, coding, financial literacy, and life skills — when funding is available) learning support",
       "Access to learning resources",
     ],
   },
