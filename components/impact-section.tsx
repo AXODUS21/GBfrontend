@@ -25,12 +25,12 @@ export default function ImpactSection() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="space-y-4">
-              <h3 className="text-xl md:text-2xl font-bold text-primary tracking-tight">
-                Capacity-Based Growth Outlook
-              </h3>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Structured, partnership-based expansion across schools, educators, youth, and workforce pathways.
               </p>
+              <h3 className="text-xl md:text-2xl font-bold text-primary tracking-tight">
+                Capacity-Based Growth Outlook
+              </h3>
             </div>
           </FadeIn>
           <DrawLine className="w-16 h-0.5 bg-accent mx-auto mt-8" delay={0.4} />
